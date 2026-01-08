@@ -1,2 +1,2 @@
-# google-ai-challenge-2025
+# google-ai-challenge-2026
 Google AI's New year, new you portolfio challenge
