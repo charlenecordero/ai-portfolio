@@ -4,192 +4,569 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreetStyle AI</title>
+    <title>Charlene Cordero | AI Solutions Architect</title>
+
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Fira+Code:wght@300;400;600&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        .btn-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 15px 0;
+        /* Cyberpunk-Cottagecore Design System */
+        :root {
+            /* Palette */
+            --void-moss: #000000;
+            /* Pure Black */
+            --deep-moss: #050505;
+            /* Almost Black */
+            --neon-mint: #4AF2A1;
+            /* Primary Accent */
+            --neon-pink: #FF2E88;
+            /* Sakura Accent */
+            --hologram-fern: #2d5a45;
+            /* Secondary/Muted */
+            --txt-bone: #E0E5D7;
+            /* Text Base */
+            --txt-muted: #8A9A90;
+
+            /* Glass Effects */
+            --glass-bg: rgba(5, 5, 5, 0.75);
+            --glass-border: rgba(74, 242, 161, 0.15);
+            --glass-shine: rgba(255, 255, 255, 0.03);
+
+            /* Animations */
+            --scanline-speed: 6s;
         }
 
-        .tmp-btn {
-            background: #1e293b;
-            border: 1px solid #334155;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            cursor: pointer;
-            color: white;
-            transition: 0.2s;
+        body {
+            background-color: var(--void-moss);
+            color: var(--txt-bone);
+            font-family: 'Fira Code', monospace;
+            /* Tech base */
+            overflow-x: hidden;
+            background-image:
+                /* Neon Sakura (Pink) */
+                radial-gradient(circle at 85% 15%, rgba(255, 46, 136, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 15% 85%, rgba(255, 46, 136, 0.1) 0%, transparent 20%),
+                /* Neon Plants (Green) */
+                radial-gradient(circle at 10% 20%, rgba(74, 242, 161, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(74, 242, 161, 0.1) 0%, transparent 30%),
+                /* Deep Atmosphere */
+                radial-gradient(circle at 50% 50%, rgba(11, 18, 14, 0.8) 0%, rgba(0, 0, 0, 1) 100%);
+            background-attachment: fixed;
         }
 
-        .tmp-btn:hover {
-            background: #3b82f6;
-            border-color: #60a5fa;
+        /* Typography Override */
+        .font-organic {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-tech {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--void-moss);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--hologram-fern);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-mint);
+        }
+
+        /* Effects */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow:
+                0 4px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px var(--glass-shine);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(74, 242, 161, 0.3);
+        }
+
+        .text-glow-hover:hover {
+            text-shadow: 0 0 15px rgba(74, 242, 161, 0.6);
+        }
+
+        /* Scanline Overlay */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0) 50%,
+                    rgba(0, 0, 0, 0.1) 50%,
+                    rgba(0, 0, 0, 0.1));
+            background-size: 100% 4px;
+            z-index: 50;
+            opacity: 0.15;
+        }
+
+        /* Utility Classes */
+        .border-organic {
+            border-radius: 12px 2px 12px 2px;
+        }
+
+        /* Animations */
+        @keyframes pulse-green {
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px rgba(74, 242, 161, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 15px rgba(74, 242, 161, 0.3);
+            }
+        }
+
+        .animate-breathe {
+            animation: pulse-green 3s infinite ease-in-out;
+        }
+
+        [x-cloak] {
+            display: none !important;
         }
     </style>
 </head>
 
-<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4 font-sans">
+<body class="min-h-screen flex flex-col justify-between" x-data="appData()">
 
-    <div id="sender-page" class="max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-blue-500/20">
-        <h1 class="text-3xl font-bold text-blue-400 mb-6">GreetStyle AI</h1>
+    <!-- Scanline Effect -->
+    <div class="scanlines"></div>
 
-        <div class="space-y-4">
+    <!-- Background Decorations (Vines & Sakura) -->
+    <div id="bg-decorations" class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <!-- Left: Neon Green Vines -->
+        <svg class="absolute left-0 top-0 h-full w-full md:w-1/3 opacity-30" preserveAspectRatio="none"
+            viewBox="0 0 100 800">
+            <path d="M0,0 C30,150 10,300 40,450 C70,600 20,750 0,900" fill="none" stroke="#4AF2A1" stroke-width="2"
+                style="filter: drop-shadow(0 0 5px #4AF2A1);" />
+            <path d="M-10,0 C20,200 60,350 10,550 C-20,700 30,800 0,1000" fill="none" stroke="#2d5a45" stroke-width="3"
+                opacity="0.5" />
+            <!-- Leaves/Tech Nodes -->
+            <circle cx="30" cy="150" r="3" fill="#4AF2A1" style="filter: drop-shadow(0 0 8px #4AF2A1);" />
+            <rect x="35" y="445" width="6" height="6" fill="#4AF2A1" transform="rotate(45 38 448)" />
+        </svg>
+
+        <!-- Right: Neon Pink Sakura -->
+        <svg class="absolute right-0 top-0 h-full w-full md:w-1/3 opacity-30" preserveAspectRatio="none"
+            viewBox="0 0 100 800">
+            <!-- Falling Petals/Blossoms -->
+            <g transform="translate(60, 100)">
+                <circle cx="0" cy="0" r="4" fill="#FF2E88" style="filter: drop-shadow(0 0 8px #FF2E88);">
+                    <animate attributeName="cy" from="0" to="20" dur="4s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="4s" repeatCount="indefinite" />
+                </circle>
+            </g>
+            <circle cx="80" cy="50" r="2" fill="#FF2E88" opacity="0.6" />
+            <circle cx="40" cy="200" r="3" fill="#FF2E88" opacity="0.8" style="filter: drop-shadow(0 0 5px #FF2E88);" />
+            <circle cx="70" cy="350" r="5" fill="#FF2E88" opacity="0.5" />
+            <circle cx="30" cy="500" r="2" fill="#FF2E88" opacity="0.7" />
+            <circle cx="90" cy="650" r="4" fill="#FF2E88" opacity="0.6" style="filter: drop-shadow(0 0 5px #FF2E88);" />
+            <!-- Minimal Branch suggestion (abstract) -->
+            <path d="M100,50 Q60,150 100,250" fill="none" stroke="#FF2E88" stroke-width="1" opacity="0.3" />
+        </svg>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-5xl mx-auto w-full p-4 md:p-8 flex flex-col h-full">
+
+        <!-- Header / Status Bar -->
+        <header class="flex justify-between items-end border-b border-[#4AF2A1]/20 pb-4 mb-4 select-none">
             <div>
-                <label class="text-[10px] text-slate-500 uppercase font-bold ml-1">Your Name (Sender)</label>
-                <input type="text" id="senderName" placeholder="Who is sending this?"
-                    class="w-full bg-slate-700 p-3 rounded-xl border border-slate-600 outline-none focus:border-blue-500 text-white">
+                <h1 class="font-organic text-4xl md:text-5xl text-[#4AF2A1] tracking-wide text-glow">
+                    Charlene Cordero
+                </h1>
+                <p class="text-sm md:text-base text-[#8A9A90] mt-1 font-tech tracking-wider">
+                    <span class="text-[#4AF2A1]">></span> Systems_Architect <span class="text-[#4AF2A1]">::</span>
+                    AI_Ops
+                </p>
             </div>
-
-            <label class="text-[10px] text-slate-500 uppercase font-bold ml-1">Quick Templates</label>
-            <div class="btn-grid">
-                <button onclick="setTmp('🎂 Birthday', 'Hope your day is cake-filled and amazing!')" class="tmp-btn">🎂
-                    Birthday</button>
-                <button onclick="setTmp('❤️ Valentine', 'You are my favorite person in the world!')" class="tmp-btn">❤️
-                    Valentine</button>
-                <button onclick="setTmp('🎆 New Year', 'Happy 2026! Let\'s make it the best year yet.')"
-                    class="tmp-btn">🎆 New Year</button>
-                <button onclick="setTmp('🎄 Christmas', 'Merry Christmas! Sending warm hugs your way.')"
-                    class="tmp-btn">🎄 Christmas</button>
+            <div class="hidden md:block text-right text-[10px] text-[#4AF2A1]/60 tracking-widest font-tech">
+                <p>SYS.STATUS: ONLINE</p>
+                <p x-text="'MEMORY: ' + Math.floor(Math.random() * 30 + 70) + '%'"></p>
+                <p x-text="'PING: ' + Math.floor(Math.random() * 20 + 5) + 'ms'"></p>
             </div>
+        </header>
 
-            <input type="text" id="title" placeholder="Greeting Title"
-                class="w-full bg-slate-700 p-3 rounded-xl border border-slate-600 outline-none focus:border-blue-500">
-            <textarea id="message" placeholder="Your Message..." rows="3"
-                class="w-full bg-slate-700 p-3 rounded-xl border border-slate-600 outline-none focus:border-blue-500"></textarea>
-
-            <button id="genBtn" onclick="generateLink()"
-                class="w-full bg-blue-600 py-4 rounded-xl font-bold shadow-lg hover:bg-blue-500 transition">Generate
-                Short Link</button>
+        <!-- Persistent Console Input -->
+        <div class="max-w-2xl mx-auto w-full mb-12">
+            <div class="relative group">
+                <span
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#4AF2A1] font-tech text-lg">></span>
+                <input type="text" x-model="inputQuery" @keyup.enter="handleCommand()"
+                    placeholder="Type 'roots', 'projects', or 'contact'..."
+                    class="w-full bg-[#050a07]/50 text-[#4AF2A1] font-tech pl-10 pr-4 py-4 border border-[#4AF2A1]/30 focus:border-[#4AF2A1] outline-none rounded-sm focus:shadow-[0_0_15px_rgba(74,242,161,0.2)] transition-all placeholder-[#4AF2A1]/30"
+                    autocomplete="off" autofocus>
+            </div>
+            <div class="mt-2 flex gap-2 text-[10px] text-[#8A9A90] justify-center font-tech opacity-60">
+                <span>Try:</span>
+                <button @click="autoType('roots')" class="hover:text-[#4AF2A1] cursor-pointer">roots</button>
+                <span>/</span>
+                <button @click="autoType('projects')" class="hover:text-[#4AF2A1] cursor-pointer">projects</button>
+                <span>/</span>
+                <button @click="autoType('contact')" class="hover:text-[#4AF2A1] cursor-pointer">contact</button>
+                <span>/</span>
+                <button @click="autoType('clear')" class="hover:text-[#4AF2A1] cursor-pointer">clear</button>
+            </div>
         </div>
 
-        <div id="result" class="hidden mt-6 p-4 bg-black/40 rounded-xl border border-emerald-500/30">
-            <p class="text-[10px] text-emerald-400 font-bold mb-2 uppercase">Short Link Created:</p>
-            <div id="shareLink"
-                class="text-xs break-all font-mono text-white mb-3 bg-slate-900 p-3 rounded border border-slate-700">
+        <!-- Content Area -->
+        <main class="flex-grow relative min-h-[400px]">
+
+            <!-- Home / Welcome Message (Visible only when no specific section is active) -->
+            <div x-show="currentSection === 'home'" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+                class="max-w-4xl mx-auto text-center">
+
+                <div class="glass-panel p-8 border-organic animate-breathe inline-block text-left">
+                    <p class="text-[#E0E5D7] font-tech text-sm leading-relaxed mb-4">
+                        AI-driven solutions and systems thinker with 7+ years of experience across software engineering,
+                        DevOps, application support, QA, and business analytics in telecom, utilities, SaaS, and
+                        enterprise environments. Strong foundation in system design, workflow automation, SQL,
+                        UNIX/Linux, and data analysis, with a proven ability to break down complex business and
+                        technical problems into structured, actionable solutions.
+                    </p>
+                    <p class="text-[#E0E5D7] font-tech text-sm leading-relaxed">
+                        Currently transitioning into AI Solutions Architecture, with formal training in AI fundamentals,
+                        Generative AI concepts, and applied data analysis, and hands-on experience validating outputs,
+                        improving workflows, and supporting production systems. Known for learning fast, adapting to new
+                        tools (including AI-assisted workflows), and taking ownership of real systems, not just code.
+                    </p>
+                    <p class="text-[10px] text-[#4AF2A1] mt-6 tracking-widest uppercase font-tech text-center">
+                        Awaiting Input...
+                    </p>
+                </div>
             </div>
-            <button onclick="copyLink()" class="w-full bg-emerald-600 py-2 rounded-lg text-xs font-bold uppercase">Copy
-                Link</button>
-        </div>
+
+
+            <!-- Projects Section -->
+            <div x-show="currentSection === 'projects'" x-cloak x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+
+                <div class="mb-8 border-b border-[#4AF2A1]/10 pb-4">
+                    <h2 class="font-organic text-3xl text-[#4AF2A1]">The Lab</h2>
+                    <p class="text-sm text-[#8A9A90] font-tech mt-1">// AI Solution Architectures & Experiments</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <template x-for="project in projects" :key="project.title">
+                        <div
+                            class="glass-panel p-6 flex flex-col h-full hover:-translate-y-1 transition-transform duration-300 border-organic">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-bold text-[#E0E5D7] font-tech" x-text="project.title"></h3>
+                                <svg class="w-5 h-5 text-[#4AF2A1]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <p class="text-sm text-[#8A9A90] mb-4 flex-grow" x-text="project.desc"></p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                <template x-for="tag in project.tags" :key="tag">
+                                    <span
+                                        class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm"
+                                        x-text="tag"></span>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Roots Section -->
+            <div x-show="currentSection === 'roots'" x-cloak x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+                class="space-y-6">
+
+                <div class="mb-8 border-b border-[#4AF2A1]/10 pb-4">
+                    <h2 class="font-organic text-3xl text-[#4AF2A1]">Roots</h2>
+                    <p class="text-sm text-[#8A9A90] font-tech mt-1">// Career Timeline & Experience</p>
+                </div>
+
+                <div class="glass-panel p-6 border-organic flex flex-col md:flex-row gap-4">
+                    <div class="md:w-1/4">
+                        <h3 class="font-bold text-[#E0E5D7] font-tech">Business Insights Analyst</h3>
+                        <p class="text-xs text-[#4AF2A1] mt-1">TaskUs</p>
+                        <p class="text-[10px] text-[#8A9A90] mt-1">May 2024 – Present</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <ul class="list-disc list-inside text-sm text-[#8A9A90] space-y-1 font-tech">
+                            <li>Designed data-driven decision systems supporting merchant growth strategies.</li>
+                            <li>Decomposed ambiguous business questions using SQL on internal ETL pipelines.</li>
+                            <li>Validated data logic and assumptions to ensure "Human-in-the-Loop" accuracy.</li>
+                            <li>Bridged the gap between technical data analysis and strategic business execution.
+                            </li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">SQL</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">UNIX</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">Sigma
+                                Computing</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">ETL
+                                Workflows</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 border-organic flex flex-col md:flex-row gap-4">
+                    <div class="md:w-1/4">
+                        <h3 class="font-bold text-[#E0E5D7] font-tech">Technical & Business Operations Analyst</h3>
+                        <p class="text-xs text-[#4AF2A1] mt-1">Amdocs</p>
+                        <p class="text-[10px] text-[#8A9A90] mt-1">December 2022 – December 2023</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <ul class="list-disc list-inside text-sm text-[#8A9A90] space-y-1 font-tech">
+                            <li>Maintained large-scale telecom architectures (CRM, Billing, Order Mgmt).</li>
+                            <li>Monitored batch workflows to identify failure points and optimize reliability.</li>
+                            <li>Translated complex system incidents into actionable resolution steps.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">System
+                                Monitoring</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">Incident
+                                Mgmt</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">Oracle
+                                SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 border-organic flex flex-col md:flex-row gap-4">
+                    <div class="md:w-1/4">
+                        <h3 class="font-bold text-[#E0E5D7] font-tech">DevOps Engineer</h3>
+                        <p class="text-xs text-[#4AF2A1] mt-1">Accenture</p>
+                        <p class="text-[10px] text-[#8A9A90] mt-1">May 2021 – July 2022</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <ul class="list-disc list-inside text-sm text-[#8A9A90] space-y-1 font-tech">
+                            <li>Application Consultant for North American Utilities (CRS, Billprint, EDI).</li>
+                            <li>Resolved automation job errors using UNIX Shell Scripting and Oracle SQL.</li>
+                            <li>Conducted backend maintenance and enhancement for production stability.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">DevOps</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">UNIX
+                                Shell</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">Java</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 border-organic flex flex-col md:flex-row gap-4">
+                    <div class="md:w-1/4">
+                        <h3 class="font-bold text-[#E0E5D7] font-tech">Quality Assurance Specialist</h3>
+                        <p class="text-xs text-[#4AF2A1] mt-1">Multisys Technologies</p>
+                        <p class="text-[10px] text-[#8A9A90] mt-1">October 2020 – April 2021</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <ul class="list-disc list-inside text-sm text-[#8A9A90] space-y-1 font-tech">
+                            <li>Conducted QA audits for Android/iOS apps to ensure manufacturing reliability.</li>
+                            <li>Defined expected ranges and implemented corrective measures for deviations.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">QA
+                                Testing</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">Mobile
+                                Validation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 border-organic flex flex-col md:flex-row gap-4">
+                    <div class="md:w-1/4">
+                        <h3 class="font-bold text-[#E0E5D7] font-tech">Health Advocate</h3>
+                        <p class="text-xs text-[#FF2E88] mt-1">Care Coach</p>
+                        <p class="text-[10px] text-[#8A9A90] mt-1">January 2020 – October 2020</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="p-3 bg-[#FF2E88]/10 border border-[#FF2E88]/30 rounded mb-2">
+                            <p class="text-xs text-[#E0E5D7] italic font-tech">"My first exposure to Avatar-based
+                                Interfaces. I operated a digital avatar to deliver health coaching—an early lesson
+                                in Human-Computer Interaction (HCI)."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 border-organic flex flex-col md:flex-row gap-4">
+                    <div class="md:w-1/4">
+                        <h3 class="font-bold text-[#E0E5D7] font-tech">Oracle PeopleSoft Developer</h3>
+                        <p class="text-xs text-[#4AF2A1] mt-1">Accenture</p>
+                        <p class="text-[10px] text-[#8A9A90] mt-1">March 2018 – December 2019</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <ul class="list-disc list-inside text-sm text-[#8A9A90] space-y-1 font-tech">
+                            <li>Configured PeopleSoft HCM applications for State Dept of Transportation.</li>
+                            <li>Designed business process requirements using Oracle SQL Developer.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">Oracle
+                                PeopleSoft</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">Oracle
+                                HCM</span>
+                            <span
+                                class="text-[10px] uppercase border border-[#4AF2A1]/30 text-[#4AF2A1] px-2 py-1 rounded-sm">Oracle
+                                SQL Developer</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- Contact Section (Modal style) -->
+                <div x-show="currentSection === 'contact'" x-cloak x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                    class="max-w-md mx-auto text-center mt-20">
+                    <div class="glass-panel p-10 border-organic">
+                        <h2 class="font-organic text-2xl text-[#E0E5D7] mb-6">Initialize Handshake</h2>
+                        <div class="space-y-4 font-tech text-sm">
+                            <a href="mailto:cascordero@outlook.com"
+                                class="block p-3 border border-[#4AF2A1]/20 hover:bg-[#4AF2A1]/10 hover:border-[#4AF2A1] transition-all text-[#4AF2A1]">
+                                email :: cascordero@outlook.com
+                            </a>
+                            <a href="#"
+                                class="block p-3 border border-[#4AF2A1]/20 hover:bg-[#4AF2A1]/10 hover:border-[#4AF2A1] transition-all text-[#4AF2A1]">
+                                linkedin :: linkedin.com/in/charlenecordero <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="#"
+                                class="block p-3 border border-[#4AF2A1]/20 hover:bg-[#4AF2A1]/10 hover:border-[#4AF2A1] transition-all text-[#4AF2A1]">
+                                github :: github.com/charlenecordero <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 py-6 border-t border-[#4AF2A1]/10 text-center">
+            <p class="text-[10px] text-[#4AF2A1]/40 uppercase tracking-widest font-tech">
+                System Architecture by Charlene Cordero &copy; 2025
+            </p>
+        </footer>
     </div>
 
-    <div id="receiver-page" class="hidden max-w-2xl w-full">
-        <div class="bg-slate-800 rounded-3xl p-10 text-center relative border border-slate-700 shadow-2xl">
-            <div id="loader"
-                class="hidden absolute inset-0 bg-slate-800/95 flex flex-col items-center justify-center z-10 rounded-3xl">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-blue-400 mb-2"></div>
-                <p class="text-xs text-blue-400 font-mono">AI Stylizing Text...</p>
-            </div>
-
-            <h1 id="viewTitle" class="text-4xl font-black mb-1 uppercase text-white tracking-tighter"></h1>
-            <p id="fromLabel" class="text-blue-400 font-bold tracking-widest text-sm mb-8 uppercase"></p>
-            <p id="viewMsg" class="text-xl italic text-slate-200 leading-relaxed"></p>
-        </div>
-
-        <div class="mt-6 p-6 bg-slate-800/50 rounded-2xl border border-slate-700">
-            <p class="text-center text-[10px] text-slate-500 font-bold uppercase mb-4 tracking-widest">Change Reading
-                Style</p>
-            <div class="grid grid-cols-3 gap-2">
-                <button onclick="applyStyle('original')" class="tmp-btn">Original</button>
-                <button onclick="applyStyle('pirate')" class="tmp-btn">Pirate</button>
-                <button onclick="applyStyle('poetry')" class="tmp-btn">Poetry</button>
-                <button onclick="applyStyle('old money')" class="tmp-btn">Old Money</button>
-                <button onclick="applyStyle('royalty')" class="tmp-btn">Royalty</button>
-                <button onclick="applyStyle('gangsta')" class="tmp-btn">Gangsta</button>
-                <button onclick="applyStyle('sci-fi')" class="tmp-btn">Sci-Fi</button>
-                <button onclick="applyStyle('yoda')" class="tmp-btn">Yoda</button>
-                <button onclick="applyStyle('magical')" class="tmp-btn">Magical</button>
-            </div>
-        </div>
-        <div class="mt-12 text-center border-t border-slate-700 pt-8">
-            <p class="text-slate-400 text-xs mb-4 italic">Want to send a magic message like this?</p>
-            <a href="./"
-                class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 rounded-2xl font-bold text-white shadow-xl shadow-blue-900/40 hover:scale-105 active:scale-95 transition-all">
-                ✨ Create Your Own Greeting
-            </a>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
+    <!-- Application Logic -->
     <script>
-        // --- 🚨 REPLACE WITH YOUR DIRECT HUGGING FACE URL 🚨 ---
-        const API_BASE = "https://chaicordero-greetstyle-ai.hf.space";
+        function appData() {
+            return {
+                currentSection: 'home',
+                inputQuery: '',
+                // Unlocked state is no longer needed since nav is removed, but keeping logic for strict router-like feel
 
-        let originalMsg = "";
+                experience: [
+                    {
+                        role: 'Decision System Design',
+                        company: 'TaskUs',
+                        years: '2021 Timbits',
+                        desc: 'Architected automated routing protocols for high-volume operational data, reducing manual triage by 40%.'
+                    },
+                    {
+                        role: 'Automation Reliability',
+                        company: 'Accenture',
+                        years: '2019 - 2021',
+                        desc: 'Oversaw reliability engineering for deployed RPA bots. Decomposed complex failure modes into self-healing workflows.'
+                    }
+                ],
+                projects: [
+                    {
+                        title: 'Merchant Growth Engine',
+                        desc: 'RAG-based workflow bridging SQL databases with LLM reasoning to automate merchant vetting. Includes hallucination validation layer.',
+                        tags: ['Python', 'LangChain', 'PostgreSQL']
+                    },
+                    {
+                        title: 'Sentiment Neural Net',
+                        desc: 'Deployed minimal-latency sentiment analysis model on edge devices for real-time customer support feedback loops.',
+                        tags: ['TensorFlow', 'Edge Computing', 'API']
+                    },
+                    {
+                        title: 'The Garden Monitor',
+                        desc: 'IoT dashboard visualizing server health metrics using organic metaphors (growth, decay, water levels).',
+                        tags: ['Vue.js', 'D3.js', 'MQTT']
+                    }
+                ],
 
-        // Check for receiving link
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('msg')) {
-            document.getElementById('sender-page').style.display = 'none';
-            document.getElementById('receiver-page').classList.remove('hidden');
-            try {
-                const raw = LZString.decompressFromEncodedURIComponent(urlParams.get('msg'));
-                const data = JSON.parse(raw);
-                document.getElementById('viewTitle').innerText = data.t || "Greeting";
-                document.getElementById('fromLabel').innerText = data.s ? "From: " + data.s : "";
-                document.getElementById('viewMsg').innerText = data.m || "";
-                originalMsg = data.m;
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-            } catch (e) { console.error(e); }
-        }
+                setSection(id) {
+                    this.currentSection = id;
+                    // Note: We do NOT reset inputQuery here to let user see what they typed, 
+                    // or we could clear it if preferred. Let's keep it clean.
+                    this.inputQuery = '';
+                },
 
-        function setTmp(t, m) {
-            document.getElementById('title').value = t;
-            document.getElementById('message').value = m;
-        }
+                handleCommand() {
+                    const cmd = this.inputQuery.toLowerCase().trim();
+                    if (cmd.includes('root')) {
+                        this.setSection('roots');
+                    } else if (cmd.includes('project') || cmd.includes('lab') || cmd.includes('solution')) {
+                        this.setSection('projects');
+                    } else if (cmd.includes('contact') || cmd.includes('email')) {
+                        this.setSection('contact');
+                    } else if (cmd.includes('home') || cmd.includes('clear')) {
+                        this.setSection('home');
+                    } else {
+                        // Optional: shake animation or error message
+                        const original = this.inputQuery;
+                        this.inputQuery = 'ERR: COMMAND NOT FOUND';
+                        setTimeout(() => this.inputQuery = original, 1000);
+                    }
+                },
 
-        async function generateLink() {
-            const btn = document.getElementById('genBtn');
-            const data = {
-                s: document.getElementById('senderName').value || "Someone Special",
-                t: document.getElementById('title').value || "A Greeting",
-                m: document.getElementById('message').value || "Hello!"
-            };
-            btn.innerText = "⏳ Creating Link...";
-            const longUrl = window.location.origin + window.location.pathname + "?msg=" + LZString.compressToEncodedURIComponent(JSON.stringify(data));
-            try {
-                const res = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`);
-                document.getElementById('shareLink').innerText = await res.text();
-            } catch (e) { document.getElementById('shareLink').innerText = longUrl; }
-            document.getElementById('result').classList.remove('hidden');
-            btn.innerText = "Generate Short Link";
-        }
-
-        function copyLink() {
-            navigator.clipboard.writeText(document.getElementById('shareLink').innerText);
-            alert("Link Copied!");
-        }
-
-        async function applyStyle(style) {
-            if (style === 'original') {
-                document.getElementById('viewMsg').innerText = originalMsg;
-                return;
-            }
-
-            const loader = document.getElementById('loader');
-            loader.classList.remove('hidden');
-
-            try {
-                const response = await fetch(`${API_BASE}/api/transform`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: originalMsg, style: style })
-                });
-
-                const data = await response.json();
-                if (data.transformedText) {
-                    document.getElementById('viewMsg').innerText = data.transformedText;
+                autoType(word) {
+                    this.inputQuery = '';
+                    let i = 0;
+                    const typeInterval = setInterval(() => {
+                        this.inputQuery += word.charAt(i);
+                        i++;
+                        if (i > word.length) {
+                            clearInterval(typeInterval);
+                            setTimeout(() => this.handleCommand(), 300);
+                        }
+                    }, 50);
                 }
-            } catch (e) {
-                console.error("AI Error:", e);
-                alert("The AI server is busy. Try again!");
-            } finally {
-                loader.classList.add('hidden');
             }
         }
     </script>
