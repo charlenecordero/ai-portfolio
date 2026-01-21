@@ -212,34 +212,114 @@
             </div>
 
             <!-- Roots Section -->
-            <div x-show="currentSection === 'roots'" x-cloak x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+            <template x-if="section === 'roots'">
+                <div class="glass p-8 rounded-xl animate-fade-in space-y-8">
 
-                <div class="grid md:grid-cols-12 gap-8">
-                    <div class="md:col-span-4">
-                        <h2 class="font-organic text-3xl text-[#4AF2A1] mb-2">The Roots</h2>
-                        <p class="text-sm text-[#8A9A90] font-tech border-l-2 border-[#4AF2A1]/30 pl-3">
-                            Growth Timeline &<br>Operational History
-                        </p>
+                    <div class="border-l-4 border-mint pl-6">
+                        <h2 class="bloom-text text-3xl text-mint">System Roots & Evolution</h2>
+                        <p class="text-gray-400 mt-2 italic">"7+ Years of decomposing business problems into reliable
+                            technical workflows."</p>
                     </div>
 
-                    <div class="md:col-span-8 space-y-6">
-                        <template x-for="(job, index) in experience" :key="index">
-                            <div
-                                class="glass-panel p-6 border-l-4 border-[#4AF2A1] hover:bg-[#4AF2A1]/5 transition-colors">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h3 class="font-bold text-lg font-organic text-[#E0E5D7]" x-text="job.role"></h3>
-                                    <span class="text-xs font-tech text-[#4AF2A1] bg-[#4AF2A1]/10 px-2 py-1 rounded"
-                                        x-text="job.years"></span>
-                                </div>
-                                <div class="text-sm text-[#8A9A90] mb-3 uppercase tracking-wider" x-text="job.company">
-                                </div>
-                                <p class="text-sm leading-relaxed opacity-90" x-text="job.desc"></p>
-                            </div>
-                        </template>
+                    <div class="relative pl-8 border-l border-mint/30 pb-8">
+                        <div class="absolute -left-1.5 top-0 w-3 h-3 bg-mint rounded-full shadow-[0_0_10px_#4AF2A1]">
+                        </div>
+                        <h3 class="font-bold text-xl text-gray-100">Business Insights Analyst</h3>
+                        <p class="text-xs text-mint mb-2">TaskUs (DoorDash) | May 2024 – Present</p>
+                        <ul class="list-disc list-inside text-sm text-gray-300 space-y-1 mb-3 font-light">
+                            <li>Designed data-driven decision systems supporting merchant growth strategies.</li>
+                            <li>Decomposed ambiguous business questions using SQL on internal ETL pipelines.</li>
+                            <li>Validated data logic and assumptions to ensure "Human-in-the-Loop" accuracy.</li>
+                            <li>Bridged the gap between technical data analysis and strategic business execution.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] px-2 py-1 border border-mint/40 rounded text-mint">SQL</span>
+                            <span class="text-[10px] px-2 py-1 border border-mint/40 rounded text-mint">UNIX</span>
+                            <span class="text-[10px] px-2 py-1 border border-mint/40 rounded text-mint">Sigma
+                                Computing</span>
+                            <span class="text-[10px] px-2 py-1 border border-mint/40 rounded text-mint">ETL
+                                Workflows</span>
+                        </div>
                     </div>
+
+                    <div class="relative pl-8 border-l border-mint/30 pb-8">
+                        <div class="absolute -left-1.5 top-0 w-3 h-3 bg-gray-600 rounded-full"></div>
+                        <h3 class="font-bold text-xl text-gray-100">Technical & Business Operations Analyst</h3>
+                        <p class="text-xs text-mint mb-2">Amdocs | Dec 2022 – Dec 2023</p>
+                        <ul class="list-disc list-inside text-sm text-gray-300 space-y-1 mb-3 font-light">
+                            <li>Maintained large-scale telecom architectures (CRM, Billing, Order Mgmt).</li>
+                            <li>Monitored batch workflows to identify failure points and optimize reliability.</li>
+                            <li>Translated complex system incidents into actionable resolution steps.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] px-2 py-1 border border-gray-600 rounded text-gray-400">System
+                                Monitoring</span>
+                            <span class="text-[10px] px-2 py-1 border border-gray-600 rounded text-gray-400">Incident
+                                Mgmt</span>
+                            <span class="text-[10px] px-2 py-1 border border-gray-600 rounded text-gray-400">Oracle
+                                SQL</span>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 border-l border-mint/30 pb-8">
+                        <div class="absolute -left-1.5 top-0 w-3 h-3 bg-gray-600 rounded-full"></div>
+                        <h3 class="font-bold text-xl text-gray-100">DevOps Back-end Software Engineer</h3>
+                        <p class="text-xs text-mint mb-2">Accenture | May 2021 – July 2022</p>
+                        <ul class="list-disc list-inside text-sm text-gray-300 space-y-1 mb-3 font-light">
+                            <li>Application Consultant for North American Utilities (CRS, Billprint, EDI).</li>
+                            <li>Resolved automation job errors using UNIX Shell Scripting and Oracle SQL.</li>
+                            <li>Conducted backend maintenance and enhancement for production stability.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="text-[10px] px-2 py-1 border border-gray-600 rounded text-gray-400">DevOps</span>
+                            <span class="text-[10px] px-2 py-1 border border-gray-600 rounded text-gray-400">UNIX
+                                Shell</span>
+                            <span class="text-[10px] px-2 py-1 border border-gray-600 rounded text-gray-400">Java</span>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 border-l border-mint/30 pb-8">
+                        <div class="absolute -left-1.5 top-0 w-3 h-3 bg-gray-600 rounded-full"></div>
+                        <h3 class="font-bold text-xl text-gray-100">Quality Assurance Specialist</h3>
+                        <p class="text-xs text-mint mb-2">Multisys Technologies | Oct 2020 – Apr 2021</p>
+                        <ul class="list-disc list-inside text-sm text-gray-300 space-y-1 mb-3 font-light">
+                            <li>Conducted QA audits for Android/iOS apps to ensure manufacturing reliability.</li>
+                            <li>Defined expected ranges and implemented corrective measures for deviations.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] px-2 py-1 border border-gray-600 rounded text-gray-400">QA
+                                Testing</span>
+                            <span class="text-[10px] px-2 py-1 border border-gray-600 rounded text-gray-400">Mobile
+                                Validation</span>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 border-l border-mint/30 pb-8">
+                        <div
+                            class="absolute -left-1.5 top-0 w-3 h-3 bg-pink-500 rounded-full shadow-[0_0_10px_#FF2E88]">
+                        </div>
+                        <h3 class="font-bold text-xl text-gray-100">Health Advocate (Chat Support)</h3>
+                        <p class="text-xs text-pink-400 mb-2">Care Coach | Jan 2020 – Oct 2020</p>
+                        <div class="p-3 bg-pink-500/10 border border-pink-500/30 rounded mb-2">
+                            <p class="text-xs text-gray-300 italic">"My first exposure to Avatar-based Interfaces. I
+                                operated a digital avatar to deliver health coaching—an early lesson in Human-Computer
+                                Interaction (HCI)."</p>
+                        </div>
+                    </div>
+
+                    <div class="relative pl-8 border-l border-mint/30">
+                        <div class="absolute -left-1.5 top-0 w-3 h-3 bg-gray-600 rounded-full"></div>
+                        <h3 class="font-bold text-xl text-gray-100">Front-End Oracle PeopleSoft Developer</h3>
+                        <p class="text-xs text-mint mb-2">Accenture | Mar 2018 – Dec 2019</p>
+                        <ul class="list-disc list-inside text-sm text-gray-300 space-y-1 mb-3 font-light">
+                            <li>Configured PeopleSoft HCM applications for State Dept of Transportation.</li>
+                            <li>Designed business process requirements using Oracle SQL Developer.</li>
+                        </ul>
+                    </div>
+
                 </div>
-            </div>
+            </template>
 
             <!-- Projects Section -->
             <div x-show="currentSection === 'projects'" x-cloak x-transition:enter="transition ease-out duration-300"
