@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create AI Greeting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-blue-500/20">
+        <h1 class="text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+            Greeting Creator</h1>
+
+        <div class="space-y-4">
+            <input type="text" id="title" placeholder="Title" class="w-full bg-slate-700 p-3 rounded-xl outline-none">
+            <textarea id="message" placeholder="Message" rows="3"
+                class="w-full bg-slate-700 p-3 rounded-xl outline-none"></textarea>
+            <input type="text" id="sender" placeholder="Your Name"
+                class="w-full bg-slate-700 p-3 rounded-xl outline-none">
+
+            <div class="flex gap-2">
+                <label class="flex-1 bg-slate-600 p-2 rounded-lg cursor-pointer text-center text-xs">
+                    📁 Upload Photo
+                    <input type="file" accept="image/*" class="hidden" onchange="handleUpload(this)">
+                </label>
+            </div>
+            <p id="imgStatus" class="hidden text-xs text-emerald-400 italic text-center">Image ready!</p>
+
+            <button onclick="saveToSupabase()" id="mainBtn"
+                class="w-full bg-blue-600 py-4 rounded-xl font-bold">Generate Short Link</button>
+        </div>
+
+        <div id="result" class="mt-6 hidden">
+            <p class="text-xs text-slate-400 mb-1">Copy this link:</p>
+            <div id="shareLink" class="bg-black/40 p-3 rounded text-[10px] break-all border border-emerald-500/30">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const supabaseUrl = 'YOUR_SUPABASE_URL';
+        const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+        const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
+        let selectedImg = "";
+
+        function handleUpload(input) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 400;
+                    const scale = MAX_WIDTH / img.width;
+                    canvas.width = MAX_WIDTH;
+                    canvas.height = img.height * scale;
+                    canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                    selectedImg = canvas.toDataURL('image/jpeg', 0.6);
+                    document.getElementById('imgStatus').classList.remove('hidden');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+        async function saveToSupabase() {
+            const btn = document.getElementById('mainBtn');
+            btn.innerText = "Saving...";
+            const { data, error } = await supabase.from('greetings').insert([{
+                title: document.getElementById('title').value,
+                message: document.getElementById('message').value,
+                sender: document.getElementById('sender').value,
+                image_url: selectedImg
+            }]).select();
+
+            if (data) {
+                const id = data[0].id;
+                document.getElementById('shareLink').innerText = window.location.origin + "/receive.html?id=" + id;
+                document.getElementById('result').classList.remove('hidden');
+            }
+            btn.innerText = "Generate Short Link";
+        }
+    </script>
+</body>
+
+</html>

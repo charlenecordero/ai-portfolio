@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Greeting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen p-6 flex flex-col items-center">
+    <div id="card" class="max-w-2xl w-full bg-slate-800 rounded-3xl overflow-hidden shadow-2xl">
+        <img id="viewImg" src="" class="w-full h-64 object-cover hidden">
+        <div class="p-8 text-center relative">
+            <div id="loader" class="hidden absolute inset-0 bg-slate-800/80 flex items-center justify-center z-10">
+                <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-blue-500"></div>
+            </div>
+            <h1 id="viewTitle" class="text-3xl font-bold text-blue-400 mb-4"></h1>
+            <p id="viewMsg" class="text-xl italic mb-6"></p>
+            <p class="text-slate-500">From: <span id="viewSender"></span></p>
+        </div>
+    </div>
+
+    <div class="mt-8 grid grid-cols-2 gap-2 w-full max-w-2xl">
+        <button onclick="applyStyle('pirate')" class="bg-slate-700 p-2 rounded">🏴‍☠️ Pirate</button>
+        <button onclick="applyStyle('gangster')" class="bg-slate-700 p-2 rounded">🔫 Gangster</button>
+        <button onclick="applyStyle('poetry')" class="bg-slate-700 p-2 rounded">✍️ Poetry</button>
+        <button onclick="applyStyle('yoda')" class="bg-slate-700 p-2 rounded">🪐 Yoda</button>
+    </div>
+
+    <script>
+        const supabaseUrl = 'YOUR_SUPABASE_URL';
+        const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+        const supabase = supabasejs.createClient(supabaseUrl, supabaseKey);
+        let originalMsg = "";
+
+        async function init() {
+            const id = new URLSearchParams(window.location.search).get('id');
+            const { data } = await supabase.from('greetings').select('*').eq('id', id).single();
+            if (data) {
+                document.getElementById('viewTitle').innerText = data.title;
+                document.getElementById('viewMsg').innerText = data.message;
+                document.getElementById('viewSender').innerText = data.sender;
+                originalMsg = data.message;
+                if (data.image_url) {
+                    const img = document.getElementById('viewImg');
+                    img.src = data.image_url;
+                    img.classList.remove('hidden');
+                }
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            }
+        }
+
+        async function applyStyle(style) {
+            document.getElementById('loader').classList.remove('hidden');
+            const res = await fetch('YOUR_LIVE_RENDER_URL/api/transform', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: originalMsg, style })
+            });
+            const data = await res.json();
+            document.getElementById('viewMsg').innerText = data.transformedText;
+            document.getElementById('loader').classList.add('hidden');
+        }
+        init();
+    </script>
+</body>
+
+</html>
