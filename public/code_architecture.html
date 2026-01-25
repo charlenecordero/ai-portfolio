@@ -108,7 +108,43 @@
             <i class="fa-solid fa-layer-group text-sm"></i> TECHNOLOGY STACK
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <!-- Node.js & Express -->
+            <div class="glass-panel p-6 rounded-lg tech-card group">
+                <div class="text-[#4AF2A1] text-3xl mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-node-js"></i>
+                </div>
+                <h3 class="text-xl font-playfair italic mb-2">Node.js & Express</h3>
+                <p class="text-xs text-[#8A9A90] font-tech leading-relaxed">
+                    Robust backend runtime serving the application and acting as the secure gateway to the Gemini API
+                    layer.
+                </p>
+            </div>
+
+            <!-- Google Gemini -->
+            <div class="glass-panel p-6 rounded-lg tech-card group">
+                <div class="text-[#FF2E88] text-3xl mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-xl font-playfair italic mb-2">Google Gemini</h3>
+                <p class="text-xs text-[#8A9A90] font-tech leading-relaxed">
+                    Generative AI model (gemini-1.5-flash) powering the interactive "Aura" chat interface and dynamic
+                    content generation.
+                </p>
+            </div>
+
+            <!-- Google Cloud Run -->
+            <div class="glass-panel p-6 rounded-lg tech-card group">
+                <div class="text-[#4AF2A1] text-3xl mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-google"></i>
+                </div>
+                <h3 class="text-xl font-playfair italic mb-2">Google Cloud Run</h3>
+                <p class="text-xs text-[#8A9A90] font-tech leading-relaxed">
+                    Serverless container platform ensuring auto-scaling, high availability, and zero-maintenance
+                    infrastructure.
+                </p>
+            </div>
+
             <!-- Alpine.js -->
             <div class="glass-panel p-6 rounded-lg tech-card group">
                 <div class="text-[#FF2E88] text-3xl mb-4 group-hover:scale-110 transition-transform">
@@ -116,8 +152,8 @@
                 </div>
                 <h3 class="text-xl font-playfair italic mb-2">Alpine.js</h3>
                 <p class="text-xs text-[#8A9A90] font-tech leading-relaxed">
-                    Handles reactive state management, routing (via View swapping), and UI interactions like the dynamic
-                    calendar and modal logic.
+                    Lightweight reactive framework managing frontend state, transitions, and user interactions without
+                    virtual DOM overhead.
                 </p>
             </div>
 
@@ -128,32 +164,19 @@
                 </div>
                 <h3 class="text-xl font-playfair italic mb-2">Tailwind CSS</h3>
                 <p class="text-xs text-[#8A9A90] font-tech leading-relaxed">
-                    Utility-first styling framework enabling the custom "Cyberpunk x Cottagecore" design system through
-                    arbitrary values.
-                </p>
-            </div>
-
-            <!-- HTML5 -->
-            <div class="glass-panel p-6 rounded-lg tech-card group">
-                <div class="text-[#FF2E88] text-3xl mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fa-brands fa-html5"></i>
-                </div>
-                <h3 class="text-xl font-playfair italic mb-2">Semantic HTML5</h3>
-                <p class="text-xs text-[#8A9A90] font-tech leading-relaxed">
-                    Accessible, structured markup ensuring SEO optimization and proper document outline for screen
-                    readers.
+                    Utility-first design system enabling the custom "Cyberpunk x Cottagecore" aesthetic with arbitrary
+                    value support.
                 </p>
             </div>
 
             <!-- Chart.js -->
             <div class="glass-panel p-6 rounded-lg tech-card group">
-                <div class="text-[#4AF2A1] text-3xl mb-4 group-hover:scale-110 transition-transform">
+                <div class="text-[#FF2E88] text-3xl mb-4 group-hover:scale-110 transition-transform">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
                 <h3 class="text-xl font-playfair italic mb-2">Chart.js</h3>
                 <p class="text-xs text-[#8A9A90] font-tech leading-relaxed">
-                    Powers the "Career Timeline" visualization in the dashboard, rendering responsive canvas-based
-                    graphs.
+                    Renders responsive, hardware-accelerated data visualizations for career and skill metrics.
                 </p>
             </div>
         </div>
@@ -167,22 +190,39 @@
                 </h2>
                 <div class="glass-panel p-6 rounded-lg font-tech text-xs md:text-sm text-[#8A9A90]">
                     <ul class="space-y-2">
-                        <li class="pl-2 border-l border-[#4AF2A1]"><span class="text-[#E0E5D7]">public/</span></li>
+                        <li class="pl-2 border-l-2 border-[#4AF2A1]"><span class="text-[#E0E5D7] font-bold">root/</span>
+                        </li>
+
+                        <!-- Backend Files -->
                         <li class="pl-6 border-l border-[#4AF2A1]/20">
-                            <span class="text-[#FF2E88]">index.html</span> <span class="text-[#8A9A90]/50">// Core SPA
-                                Entry Point</span>
+                            <span class="text-[#FF2E88]">server.js</span> <span class="text-[#8A9A90]/50 ml-2">//
+                                Express Backend & API</span>
                         </li>
                         <li class="pl-6 border-l border-[#4AF2A1]/20">
-                            <span class="text-[#FF2E88]">code_architecture.html</span> <span
-                                class="text-[#8A9A90]/50">// You are here</span>
+                            <span class="text-[#FF2E88]">Procfile</span> <span class="text-[#8A9A90]/50 ml-2">// Cloud
+                                Run Entrypoint</span>
                         </li>
                         <li class="pl-6 border-l border-[#4AF2A1]/20">
-                            <span class="text-[#4AF2A1]">style.css</span> <span class="text-[#8A9A90]/50">// Custom
-                                Animations & Glitch Effects</span>
+                            <span class="text-[#FF2E88]">.gcloudignore</span> <span class="text-[#8A9A90]/50 ml-2">//
+                                Deployment Config</span>
                         </li>
-                        <li class="pl-6 border-l border-[#4AF2A1]/20">
-                            <span class="text-[#E0E5D7]">assets/</span> <span class="text-[#8A9A90]/50">// Images &
-                                Resources</span>
+
+                        <!-- Public Folder -->
+                        <li class="pl-6 border-l border-[#4AF2A1]/20 mt-2">
+                            <span class="text-[#E0E5D7]">public/</span> <span class="text-[#8A9A90]/50 ml-2">// Static
+                                Assets</span>
+                        </li>
+                        <li class="pl-10 border-l border-[#4AF2A1]/20">
+                            <span class="text-[#4AF2A1]">index.html</span> <span class="text-[#8A9A90]/50 ml-2">// SPA
+                                Entry</span>
+                        </li>
+                        <li class="pl-10 border-l border-[#4AF2A1]/20">
+                            <span class="text-[#4AF2A1]">script.js</span> <span class="text-[#8A9A90]/50 ml-2">//
+                                Frontend Logic</span>
+                        </li>
+                        <li class="pl-10 border-l border-[#4AF2A1]/20">
+                            <span class="text-[#4AF2A1]">style.css</span> <span class="text-[#8A9A90]/50 ml-2">// Core
+                                Styles</span>
                         </li>
                     </ul>
                 </div>
@@ -195,25 +235,22 @@
                 </h2>
                 <div class="code-block p-4 rounded-lg text-xs overflow-x-auto">
                     <pre><code class="language-javascript">
-<span class="text-[#8A9A90]">// Main Application State</span>
-function <span class="text-[#FF2E88]">appData()</span> {
-    return {
-        <span class="text-[#4AF2A1]">currentSection</span>: 'dashboard',
-        <span class="text-[#4AF2A1]">inputQuery</span>: '',
-        
-        <span class="text-[#8A9A90]">// Navigation Handler</span>
-        <span class="text-[#FF2E88]">handleCommand()</span> {
-            const cmd = this.inputQuery.toLowerCase();
-            if (cmd === 'about') this.currentSection = 'about';
-            // ... handles routing
-        },
-
-        <span class="text-[#8A9A90]">// Calendar Logic</span>
-        <span class="text-[#FF2E88]">get daysInMonth()</span> {
-            return new Date(this.year, this.month + 1, 0).getDate();
-        }
-    }
+<span class="text-[#8A9A90]">// 1. Frontend: Sends Message to Backend</span>
+async function <span class="text-[#FF2E88]">sendMessage(msg)</span> {
+    const response = await fetch('<span class="text-[#4AF2A1]">/api/chat</span>', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+    });
+    return await response.json();
 }
+
+<span class="text-[#8A9A90]">// 2. Backend (server.js): Calls Gemini</span>
+app.post('<span class="text-[#4AF2A1]">/api/chat</span>', async (req, res) => {
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await model.generateContent(prompt);
+    res.json({ reply: result.response.text() });
+});
                     </code></pre>
                 </div>
             </div>

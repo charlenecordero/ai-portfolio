@@ -3,6 +3,7 @@ function appData() {
         currentSection: 'dashboard',
         subject: '',
         message: '',
+        fromEmail: '',
         inputQuery: '',
         isLightMode: false,
 
@@ -12,6 +13,21 @@ function appData() {
         stackChartInstance: null,
         learningChartInstance: null,
         chartRefreshTimeout: null,
+
+        // Chatbot Data
+        chatOpen: false,
+        chatInput: '',
+        isTyping: false,
+        chatMessages: [
+            { role: 'aura', text: "Hello! I'm Aura, your AI guide. Ask me anything about Charlene's projects, experience, or design philosophy!" }
+        ],
+        suggestions: [
+            "Summarize Portfolio",
+            "Who is Charlene?",
+            "Explain Design",
+            "What is Cottagecore?",
+            "Explain Code Architecture"
+        ],
 
         // System Version History Data
         activeVersion: 6,
@@ -614,6 +630,130 @@ function appData() {
                 skills: ['PHP', 'MySQL', 'JS']
             }
         ],
+
+        toggleChat() {
+            this.chatOpen = !this.chatOpen;
+            if (this.chatOpen) {
+                this.scrollToBottom();
+            }
+        },
+
+        clearChat() {
+            this.chatMessages = [
+                { role: 'aura', text: "Memory wiped. Ready for new inputs." }
+            ];
+            this.suggestions = [
+                "Summarize Portfolio",
+                "Who is Charlene?",
+                "What is Cyberpunk?",
+                "Explain Design"
+            ];
+        },
+
+        formatMessage(text) {
+            if (!text) return '';
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#4AF2A1]">$1</strong>') // Bold
+                .replace(/\*(.*?)\*/g, '<em class="text-[#FF2E88]">$1</em>') // Italic
+                .replace(/^- (.*$)/gm, '<span class="block pl-2 border-l-2 border-[#2d5a45] mb-1">$1</span>') // List items
+                .replace(/\n/g, '<br>'); // Newlines
+        },
+
+        async sendChatMessage() {
+            const text = this.chatInput.trim();
+            if (!text) return;
+
+            // Add user message
+            this.chatMessages.push({ role: 'user', text: text });
+            this.chatInput = '';
+            this.scrollToBottom();
+            this.isTyping = true;
+
+            // OFFLINE FALLBACKS (Instant Response)
+            const offlineMap = {
+                "Summarize Portfolio": "Here is quick summary:\n- **Role**: Business Insights Analyst (TaskUs)\n- **Focus**: Transitioning into AI & Automation.\n- **Experience**: 7+ years (Amdocs, Accenture, Multisys)\n- **Style**: Cyberpunk x Cottagecore.",
+                "Who is Charlene?": "Charlene Cordero is a **Business Insights Analyst** at TaskUs. She has a strong background in DevOps & QA and is now **transitioning into AI & Automation**, aiming to build resilient, intelligent systems.",
+                "Explain Design": "This portfolio uses a **'Neural Garden'** design:\n- **Cyberpunk**: Neon greens/pinks representing raw data.\n- **Cottagecore**: Organic textures representing life.\nIt symbolizes AI supporting human growth.",
+                "What is Cottagecore?": "**Cottagecore** celebrates simple, rural living. Here, it represents the 'Soft Life'—using high-tech automation to reclaim time for meaningful experiences.",
+                "What is Cyberpunk?": "**Cyberpunk** is a subgenre of sci-fi usually featuring advanced tech in a dystopian future. In this portfolio, I use its **neon aesthetics** to represent the power of data and automation.",
+                "Explain Code Architecture": "This site is a **serverless SPA**:\n- **Frontend**: Alpine.js + Tailwind.\n- **Backend**: Node.js (Cloud Run).\n- **AI**: Gemini 1.5 Flash.\n- **Performance**: Zero-cache, lightweight DOM."
+            };
+
+            const lowerText = text.toLowerCase();
+            let offlineReply = null;
+
+            // 1. Direct Match
+            if (offlineMap[text]) {
+                offlineReply = offlineMap[text];
+            }
+            // 2. Fuzzy / Keyword Match
+            else if (lowerText.includes('who') && lowerText.includes('charlene') || lowerText === 'charlene') {
+                offlineReply = "Charlene is a **Business Insights Analyst** transitioning into **AI Architecture**. \n<br><button onclick=\"window.location.href='#'; document.querySelector('[x-data]').__x.$data.currentSection = 'about'\" class='mt-2 text-xs border border-[#4AF2A1] text-[#4AF2A1] px-2 py-1 rounded hover:bg-[#4AF2A1] hover:text-black transition-colors uppercase'>Read Full Bio >></button>";
+            }
+            else if (lowerText.includes('design') || lowerText.includes('style')) offlineReply = offlineMap["Explain Design"];
+            else if (lowerText.includes('code') || lowerText.includes('stack')) offlineReply = offlineMap["Explain Code Architecture"];
+            else if (lowerText.includes('summary') || lowerText.includes('portfolio') || lowerText.includes('resume')) offlineReply = offlineMap["Summarize Portfolio"];
+            else if (lowerText.includes('cyberpunk')) offlineReply = offlineMap["What is Cyberpunk?"];
+
+            // 3. Generic Keyword Fallbacks (for free typing)
+            else if (lowerText.includes('contact') || lowerText.includes('email') || lowerText.includes('hire') || lowerText === 'contact') {
+                offlineReply = "Open a frequency to Charlene via the **Transmission Log**.\n<br><button onclick=\"document.querySelector('[x-data]').__x.$data.currentSection = 'contact'\" class='mt-2 text-xs border border-[#FF2E88] text-[#FF2E88] px-2 py-1 rounded hover:bg-[#FF2E88] hover:text-black transition-colors uppercase'>Open Contact Form >></button>";
+            }
+            else if (lowerText.includes('linkedin') || lowerText === 'linkedin') {
+                offlineReply = "Connect with Charlene on the professional network.\n<br><a href='https://linkedin.com/in/charlenecordero' target='_blank' class='mt-2 inline-block text-xs border border-[#0077b5] text-[#0077b5] px-2 py-1 rounded hover:bg-[#0077b5] hover:text-white transition-colors uppercase'><i class='fa-brands fa-linkedin'></i> View Profile >></a>";
+            }
+            else if (lowerText.includes('skill') || lowerText.includes('tech')) {
+                offlineReply = "My toolkit includes:\n- **Languages**: Python, SQL, JavaScript\n- **Cloud**: Google Cloud (Cloud Run, BigQuery)\n- **AI**: Gemini, OpenAI, fine-tuning\n- **DevOps**: Docker, Jenkins, Unix";
+            }
+
+            if (offlineReply) {
+                setTimeout(() => {
+                    this.chatMessages.push({ role: 'aura', text: this.formatMessage(offlineReply) });
+                    this.isTyping = false;
+                    this.scrollToBottom();
+                }, 600);
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok');
+
+                const data = await response.json();
+                this.chatMessages.push({ role: 'aura', text: this.formatMessage(data.reply) });
+            } catch (error) {
+                console.error('Chat Error:', error);
+
+                // Smart Error Fallback (instead of generic error)
+                const fallbackResponses = [
+                    "I'm currently operating in **Offline Mode** (Neural Link severed). But I can still tell you about Charlene's **Skills**, **Projects**, or **Design Philosophy**.",
+                    "My cloud uplinks are unreachable, but my local database is active. Ask me about **Cyberpunk**, **Cottagecore**, or **Code Architecture**!"
+                ];
+                const randomFallback = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+
+                this.chatMessages.push({
+                    role: 'aura',
+                    text: this.formatMessage(randomFallback)
+                });
+            } finally {
+                this.isTyping = false;
+                this.scrollToBottom();
+            }
+        },
+
+        scrollToBottom() {
+            this.$nextTick(() => {
+                const chatContainer = document.getElementById('chat-messages');
+                if (chatContainer) {
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            });
+        },
 
         init() {
             console.log("CORE SYSTEM v2.1 LOADED - " + new Date().toISOString());
