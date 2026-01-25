@@ -202,19 +202,19 @@ function appData() {
                 title: 'Weird Wanderess',
                 desc: 'Personal blog for worldly exploration.',
                 tags: ['Blog', 'Exploration', 'Personal'],
-                link: 'https://weirdwanderess.com'
+                link: 'https://www.facebook.com/weirdwanderess'
             },
             {
                 title: 'Ibasari',
                 desc: 'Ecommerce platform for online variety store.',
                 tags: ['E-commerce', 'Store', 'Business'],
-                link: 'https://ibasari.com'
+                link: 'https://www.facebook.com/ibasaristore'
             },
             {
                 title: 'CyberCottage.ai',
                 desc: 'Future AI startup brand.',
                 tags: ['Startup', 'AI', 'Future'],
-                link: 'https://cybercottage.ai'
+                link: 'https://www.facebook.com/cybercottage'
             },
             {
                 title: 'Portfolio Dashboard',
