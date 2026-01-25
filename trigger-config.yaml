@@ -1,0 +1,26 @@
+build:
+  images:
+  - gcr.io/ai-portfolio-challenge/github.com/charlenecordero/ai-portfolio:$COMMIT_SHA
+  options: {}
+  steps:
+  - args:
+    - pack
+    - build
+    - gcr.io/ai-portfolio-challenge/github.com/charlenecordero/ai-portfolio:$COMMIT_SHA
+    - --builder
+    - gcr.io/buildpacks/builder
+    - --env
+    - GOOGLE_RUNTIME=node.js
+    - --env
+    - GOOGLE_ENTRYPOINT=node server.js
+    name: gcr.io/k8s-skaffold/pack
+createTime: '2026-01-25T07:48:22.638900818Z'
+github:
+  name: ai-portfolio
+  owner: charlenecordero
+  push:
+    branch: ^main$
+id: 2242deb7-af48-48ac-ac6c-140244dfbafc
+name: auto-deploy-portfolio
+resourceName: projects/ai-portfolio-challenge/locations/asia-southeast1/triggers/2242deb7-af48-48ac-ac6c-140244dfbafc
+serviceAccount: projects/ai-portfolio-challenge/serviceAccounts/310519834298-compute@developer.gserviceaccount.com
