@@ -148,7 +148,8 @@
             </button>
             <button @click="currentSection = 'projects'" :class="{'active': currentSection === 'projects'}"
                 class="btn-hud">
-                <i class="fa-solid fa-flask"></i> THE LAB
+                <i class="fa-solid fa-flask"></i> <span class="md:hidden">LAB</span><span class="hidden md:inline">THE
+                    LAB</span>
             </button>
             <button @click="currentSection = 'experience'" :class="{'active': currentSection === 'experience'}"
                 class="btn-hud">
