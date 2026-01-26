@@ -146,7 +146,8 @@
                     class="hidden md:inline">DASHBOARD</span>
             </button>
             <button @click="currentSection = 'about'" :class="{'active': currentSection === 'about'}" class="btn-hud">
-                <i class="fa-solid fa-user-astronaut"></i> IDENTITY
+                <i class="fa-solid fa-user-astronaut"></i> <span class="md:hidden">ID</span><span
+                    class="hidden md:inline">IDENTITY</span>
             </button>
             <button @click="currentSection = 'projects'" :class="{'active': currentSection === 'projects'}"
                 class="btn-hud">
@@ -158,7 +159,8 @@
                 <i class="fa-solid fa-file-code"></i> LOGS
             </button>
             <button @click="currentSection = 'blog'" :class="{'active': currentSection === 'blog'}" class="btn-hud">
-                <i class="fa-solid fa-satellite-dish"></i> ARCHIVES
+                <i class="fa-solid fa-satellite-dish"></i> <span class="md:hidden">BLOG</span><span
+                    class="hidden md:inline">ARCHIVES</span>
             </button>
             <button @click="currentSection = 'contact'" :class="{'active': currentSection === 'contact'}"
                 class="btn-hud">
