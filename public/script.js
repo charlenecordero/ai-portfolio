@@ -15,9 +15,178 @@ function appData() {
         learningChartInstance: null,
         chartRefreshTimeout: null,
 
-        // ... (Chatbot Data ommitted for brevity in this replace, assuming it's unchanged)
+        // Chatbot Data
+        chatOpen: false,
+        chatInput: '',
+        isTyping: false,
+        chatMessages: [
+            { role: 'aura', text: "Hello! I'm Aura, your AI guide. Ask me anything about Charlene's projects, experience, or design philosophy!" }
+        ],
+        suggestions: [
+            "Summarize Portfolio",
+            "Who is Charlene?",
+            "Explain Design",
+            "What is Cottagecore?",
+            "Explain Code Architecture"
+        ],
 
-        // ...
+        // System Version History Data
+        activeVersion: 6,
+        systemHistory: [
+            {
+                version: 1,
+                id: 'v1.0.0',
+                label: 'APL-Web',
+                year: '2016',
+                role: 'Intern Web Programmer',
+                company: 'APL co. ptd. Ltd.',
+                focus: 'Module_Focus: Web Development Foundation',
+                skills: ['PHP', 'MySQL', 'JavaScript', 'HTML/CSS'],
+                desc: 'Assisted in front-end and back-end web development tasks. Built foundational skills in translating requirements into functional web components.'
+            },
+            {
+                version: 2,
+                id: 'v2.0.0',
+                label: 'Accenture-PS',
+                year: '2018-2019',
+                role: 'Oracle PeopleSoft Developer',
+                company: 'Accenture',
+                focus: 'Module_Focus: Enterprise HR Systems',
+                skills: ['Oracle PeopleSoft', 'HCM', 'Oracle SQL', 'Enterprise Architecture'],
+                desc: 'Designed and configured enterprise HR systems for state DOT. Translated complex business requirements into technical configurations.'
+            },
+            {
+                version: 3,
+                id: 'v3.0.0',
+                label: 'CareCoach-AI',
+                year: '2020',
+                role: 'Health Advocate',
+                company: 'Care Coach',
+                focus: 'Module_Focus: AI-Assisted UX',
+                skills: ['Human-AI Interaction', 'Workflow Design', 'Responsible Automation'],
+                desc: 'Delivered interactive user experiences through AI-assisted conversational systems. Balanced automation with human empathy.'
+            },
+            {
+                version: 4,
+                id: 'v4.0.0',
+                label: 'Multisys-QA',
+                year: '2020-2021',
+                role: 'Mobile QA Specialist',
+                company: 'Multisys Tech',
+                focus: 'Module_Focus: Quality Assurance',
+                skills: ['End-to-End Testing', 'Mobile Validation', 'Edge-Case Analysis'],
+                desc: 'Conducted end-to-end quality validation for web and mobile apps. Designed test scenarios to verify system behavior.'
+            },
+            {
+                version: 5,
+                id: 'v5.0.0',
+                label: 'DevOps-Unix',
+                year: '2021-2023',
+                role: 'DevOps / Ops Analyst',
+                company: 'Accenture / Amdocs',
+                focus: 'Module_Focus: Production Systems & Automation',
+                skills: ['UNIX Shell', 'Oracle SQL', 'Automation Pipelines', 'Incident Management'],
+                desc: 'Supported large-scale customer resource and telecom systems. Enhanced backend workflows and resolved production incidents.'
+            },
+            {
+                version: 6,
+                id: 'v6.0.0',
+                label: 'TaskUs-AI',
+                year: '2024-Present',
+                role: 'Business Insights Analyst',
+                company: 'TaskUs',
+                focus: 'Module_Focus: AI & Data Strategy',
+                skills: ['SQL', 'Sigma Computing', 'ETL', 'Business Strategy'],
+                desc: 'Designing data-driven decision systems. Bridging technical analysis and business strategy for sales/ops growth.'
+            }
+        ],
+
+        blogs: [
+            {
+                id: 5,
+                title: 'GreetStyle AI: The Solution to "Cringey" Greetings',
+                date: 'Jan 24, 2026',
+                summary: 'An AI-powered greeting card generator that makes personal messages more fun and interactive.',
+                content: `
+                    <h4 class="text-[#FF2E88] font-bold text-lg mb-2">The Problem with Digital Greetings</h4>
+                    <p class="mb-4">We've all been there: It's your friend's birthday, and you want to tell them how much you appreciate them. But how do you say it without being "cringey" or awkward?</p>
+
+                    <h4 class="text-[#FF2E88] font-bold text-lg mb-2">The Story: A Birthday, a Dilemma, and an Idea</h4>
+                    <p class="mb-4">Last week, while staring at a blank text box, I realized I didn't know what "mood" the celebrant was in. Was he in the mood for a heartfelt message? A joke? Or maybe something completely absurd? I thought: “What if he could choose how to read my message?”</p>
+
+                    <h4 class="text-[#4AF2A1] font-bold text-lg mb-2">The Solution: GreetStyle AI</h4>
+                    <p class="mb-4">That "what if" became GreetStyle AI. I built this platform so that the sender can be sincere, but the receiver gets to have all the fun. Now, when I send a message, he can use AI to instantly toggle the "vibe":</p>
+                    <ul class="list-disc list-inside mb-4 pl-4 text-[#8A9A90]">
+                        <li>Feeling silly? Switch to <span class="text-[#FF2E88]">Minion Language 🍌</span>.</li>
+                        <li>Feeling chaotic? Switch to <span class="text-[#FF2E88]">Gen Z Slang 💀</span>.</li>
+                        <li>Feeling fancy? Switch to <span class="text-[#FF2E88]">Royalty 👑</span>.</li>
+                    </ul>
+
+                    <h4 class="text-[#8B5CF6] font-bold text-lg mb-2">The Tech Stack ("The How")</h4>
+                    <ul class="list-disc list-inside mb-4 pl-4 text-[#8A9A90]">
+                        <li><strong>Brain:</strong> Integrated <span class="text-[#4AF2A1]">Gemini 2.5 Flash-Lite</span> for high-speed, creative styling.</li>
+                        <li><strong>Infrastructure:</strong> Deployed a dual-platform setup with GitHub Pages (Frontend) and Hugging Face (Backend).</li>
+                        <li><strong>Efficiency:</strong> Used <span class="text-[#4AF2A1]">LZ-String compression</span> to store data in the URL, making it a "serverless" experience.</li>
+                        <li><strong>Reliability:</strong> Built a custom Direct Fetch architecture and Auto-Retry logic to handle API quotas.</li>
+                    </ul>
+
+                    <h4 class="text-[#E0E5D7] font-bold text-lg mb-2">Takeaway</h4>
+                    <p class="mb-4">Sometimes the best technical solutions come from a very human problem: trying to connect with your special someone in a fun way.</p>
+                    
+                    <p class="mt-4"><a href="https://greetstyle.com" target="_blank" class="text-[#4AF2A1] underline">Check it out at greetstyle.com</a></p>
+                    <div class="flex gap-2 mt-4 text-[10px] text-[#4AF2A1]/60 font-mono flex-wrap">
+                        <span>#GenAI</span> <span>#WebDev</span> <span>#GeminiAI</span> <span>#BuildInPublic</span> <span>#FullStack</span>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: 'Challenge Accepted: Google AI New Year, New You',
+                date: 'Jan 24, 2026',
+                summary: 'The spark that started this Cyber-Cottage overhaul.',
+                content: 'I stumbled upon an article on dev.to about the "New Year, New You" portfolio challenge by the Google AI team. It was the perfect motivation to finally revamp my portfolio. I decided to blend my love for Cyberpunk aesthetics with Cottagecore elements, creating a unique "Neural Garden" interface. Check out the challenge here: <a href="https://dev.to/devteam/join-the-new-year-new-you-portfolio-challenge-3000-in-prizes-feedback-from-google-ai-team-4e7g" target="_blank" class="text-[#4AF2A1] underline">Join the Challenge</a>.'
+            },
+            {
+                id: 1,
+                title: 'The Ghost in the Shell Script: Automating My Life',
+                date: 'Oct 24, 2025',
+                summary: 'How I used simple bash scripts to reclaim 10 hours of my week.',
+                content: 'Automation isn\'t just for servers. In this post, I explore how I applied DevOps principles to my daily routine, from meal prep scheduling to automated budget tracking. It started with a simple cron job...'
+            },
+            {
+                id: 2,
+                title: 'Neon Gardening: Hydroponics meet IoT',
+                date: 'Nov 12, 2025',
+                summary: 'Building a self-sustaining indoor garden with Arduino and a lot of UV lights.',
+                content: 'My cottagecore dreams collided with my cyberpunk reality. Using an ESP32, some water pumps, and a custom dashboard, I created a hydroponic system that texts me when the pH is off.'
+            },
+            {
+                id: 3,
+                title: 'AI Architectures for the Lazy Developer',
+                date: 'Jan 05, 2026',
+                summary: 'Why "good enough" is sometimes better than state-of-the-art.',
+                content: 'We often obsess over the latest transformer models, but sometimes a simple regression is all you need. Here is a breakdown of practical AI architecture decisions for real-world business problems.'
+            }
+        ],
+
+        // Theme Logic
+        getThemeColor(cssVar) {
+            return getComputedStyle(document.body).getPropertyValue(cssVar).trim();
+        },
+
+        refreshCharts() {
+            // Debounce: Clear previous timer if it exists
+            if (this.chartRefreshTimeout) {
+                clearTimeout(this.chartRefreshTimeout);
+            }
+
+            // Small delay to allow CSS variable propagation
+            this.chartRefreshTimeout = setTimeout(() => {
+                this.initChart();
+                this.initStackChart();
+                this.initLearningChart();
+            }, 100); // Increased to 100ms for safety
+        },
 
         projects: [
             {
