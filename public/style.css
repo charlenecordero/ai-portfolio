@@ -257,8 +257,8 @@ body {
 /* Chat Widget Styles */
 .chat-widget-container {
     position: fixed;
-    bottom: 4rem;
-    right: 3rem;
+    bottom: 2rem;
+    right: 2rem;
     z-index: 2147483647;
     font-family: 'Fira Code', monospace;
     display: block !important;
@@ -266,8 +266,8 @@ body {
 
 @media (min-width: 768px) {
     .chat-widget-container {
-        bottom: 4rem;
-        right: 6rem;
+        bottom: 3rem;
+        right: 4rem;
     }
 }
 
