@@ -475,17 +475,21 @@ body {
 }
 
 @media (max-width: 768px) {
-    .btn-hud {
-        padding: 6px 2px;
-        font-size: 0.55rem;
-        gap: 4px;
+    .hud-nav-grid .btn-hud {
+        padding: 4px 2px;
+        font-size: 0.5rem;
+        gap: 2px;
         flex-direction: column;
         height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         line-height: 1.1;
     }
 
-    .btn-hud i {
-        font-size: 0.9rem;
+    .hud-nav-grid .btn-hud i {
+        font-size: 0.8rem;
     }
 }
 
