@@ -189,7 +189,9 @@
                 <div class="alien-border glass-panel p-4 flex flex-col justify-center relative w-full">
 
 
-                    <h2 class="font-playfair text-xl text-[#FF2E88] mb-2 tracking-wide">IDENTIFICATION</h2>
+                    <h2
+                        class="font-playfair text-xl text-[var(--neon-pink)] font-bold drop-shadow-[0_0_5px_rgba(255,46,136,0.8)] mb-2 tracking-wide">
+                        IDENTIFICATION</h2>
                     <p class="font-tech text-sm md:text-base leading-relaxed text-[var(--txt-bone)]">
                         <strong class="text-[var(--neon-mint)]">Business Insights
                             Analyst at TaskUs</strong>
@@ -258,7 +260,8 @@
                     <div class="w-full md:w-1/3 alien-border glass-panel p-4 flex flex-col justify-center h-[250px]">
 
 
-                        <h3 class="font-playfair text-lg text-[#FF2E88] mb-4 flex items-center gap-2">
+                        <h3
+                            class="font-playfair text-lg text-[var(--neon-pink)] font-bold drop-shadow-[0_0_5px_rgba(255,46,136,0.8)] mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-code"></i> CORE TOOLS
                         </h3>
                         <div class="space-y-4">
@@ -320,7 +323,8 @@
                     <div class="w-full md:w-1/3 alien-border glass-panel p-4 flex flex-col justify-center h-[250px]">
 
 
-                        <h3 class="font-tech text-lg mb-4 flex items-center gap-2 text-[#FF2E88]">
+                        <h3
+                            class="font-tech text-lg mb-4 flex items-center gap-2 text-[var(--neon-pink)] font-bold drop-shadow-[0_0_5px_rgba(255,46,136,0.8)]">
                             <i class="fa-solid fa-graduation-cap"></i>MODULES
                         </h3>
                         <div class="w-full h-full relative">
@@ -339,7 +343,8 @@
                         <div class="alien-border glass-panel p-4 flex flex-col justify-center h-[300px]">
 
 
-                            <h3 class="font-tech text-lg mb-4 flex items-center gap-2 text-[#FF2E88]">
+                            <h3
+                                class="font-tech text-lg mb-4 flex items-center gap-2 text-[var(--neon-pink)] font-bold drop-shadow-[0_0_5px_rgba(255,46,136,0.8)]">
                                 <i class="fa-solid fa-layer-group"></i> AI STACK
                             </h3>
                             <div class="w-full h-[200px] relative">
@@ -351,7 +356,8 @@
                         <div class="alien-border glass-panel p-4 flex flex-col h-[300px]">
 
 
-                            <h3 class="font-playfair text-lg mb-4 flex items-center gap-2 text-[#FF2E88]">
+                            <h3
+                                class="font-playfair text-lg mb-4 flex items-center gap-2 text-[var(--neon-pink)] font-bold drop-shadow-[0_0_5px_rgba(255,46,136,0.8)]">
                                 <i class="fa-solid fa-rss"></i> RECENT LOGS
                             </h3>
                             <div class="space-y-3 overflow-y-auto custom-scrollbar pr-2">
@@ -389,7 +395,8 @@
 
                             <!-- Header -->
                             <div class="flex justify-between items-center mb-6 border-b border-[#2d5a45] pb-2">
-                                <h3 class="font-tech text-lg flex items-center gap-2 text-[#FF2E88]">
+                                <h3
+                                    class="font-tech text-lg flex items-center gap-2 text-[var(--neon-pink)] font-bold drop-shadow-[0_0_5px_rgba(255,46,136,0.8)]">
                                     <i class="fa-solid fa-code-branch"></i>VERSION HISTORY
                                 </h3>
                                 <div class="font-tech text-xs text-[#4AF2A1] animate-pulse">
@@ -461,11 +468,10 @@
                                     <template x-for="v in systemHistory">
                                         <div x-show="activeVersion === v.version" x-transition.opacity.duration.300ms
                                             class="row-start-1 col-start-1">
-                                            <h4 class="font-futuristic text-2xl text-[#FF2E88] mb-1" x-text="v.id">
+                                            <h4 class="font-tech text-2xl text-[#FF2E88] mb-1" x-text="v.id">
                                             </h4>
                                             <h5 class="font-tech text-sm text-[#4AF2A1] mb-2" x-text="v.label"></h5>
-                                            <p class="font-futuristic text-xs mb-1 text-[var(--txt-bone)]"
-                                                x-text="v.role">
+                                            <p class="font-tech text-xs mb-1 text-[var(--txt-bone)]" x-text="v.role">
                                             </p>
                                             <p class="text-[var(--txt-muted)] text-[10px] uppercase tracking-wider"
                                                 x-text="v.company"></p>
@@ -813,7 +819,7 @@
                                 </path>
                             </svg>
                             <h3
-                                class="font-bold text-[var(--txt-bone)] font-tech group-hover:text-[var(--neon-mint)] transition-colors inline-flex items-center gap-2">
+                                class="font-tech font-bold text-[var(--txt-bone)] group-hover:text-[var(--neon-mint)] transition-colors inline-flex items-center gap-2">
                                 <span x-text="project.title"></span>
                                 <i class="fa-solid fa-expand text-[10px] opacity-50 group-hover:opacity-100"></i>
                             </h3>
@@ -876,7 +882,7 @@
                             class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-[#2d5a45]/50 pb-2 mb-2">
                             <!-- Left: Job Info -->
                             <div class="flex items-center gap-2 flex-wrap flex-grow">
-                                <h3 class="font-bold text-[var(--neon-mint)] font-tech text-xs md:text-sm tracking-wide"
+                                <h3 class="font-tech font-bold text-[var(--neon-mint)] text-xs md:text-sm tracking-wide"
                                     x-text="job.role"></h3>
                                 <span class="text-[#FF2E88] text-[10px] opacity-70 hidden md:inline">//</span>
                                 <span class="text-[var(--txt-bone)] text-xs font-tech uppercase tracking-wider"
@@ -949,7 +955,7 @@
                                 x-text="blog.date"></span>
                             <div class="h-4 w-px bg-[#2d5a45] hidden md:block"></div>
                             <div>
-                                <h3 class="font-futuristic text-sm md:text-base text-[#FFEAF5] group-hover:text-[var(--neon-pink)] transition-colors tracking-wide"
+                                <h3 class="font-tech text-sm md:text-base text-[#FFEAF5] group-hover:text-[var(--neon-pink)] transition-colors tracking-wide"
                                     x-text="blog.title"></h3>
                                 <p class="font-tech text-[10px] text-[var(--txt-muted)] truncate max-w-[400px] block"
                                     x-text="blog.summary"></p>
