@@ -156,7 +156,8 @@
             </button>
             <button @click="currentSection = 'experience'" :class="{'active': currentSection === 'experience'}"
                 class="btn-hud">
-                <i class="fa-solid fa-file-code"></i> LOGS
+                <i class="fa-solid fa-file-code"></i> <span class="md:hidden">LOGS</span><span
+                    class="hidden md:inline">EXPERIENCE</span>
             </button>
             <button @click="currentSection = 'blog'" :class="{'active': currentSection === 'blog'}" class="btn-hud">
                 <i class="fa-solid fa-satellite-dish"></i> <span class="md:hidden">BLOG</span><span
