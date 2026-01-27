@@ -244,7 +244,7 @@ body {
 
 .btn-hud.active {
     background: var(--neon-mint);
-    color: #000;
+    color: #000000;
     box-shadow: 0 0 10px rgba(74, 242, 161, 0.4);
 }
 
@@ -266,7 +266,8 @@ body {
     color: #000000;
 }
 
-.light-mode .btn-hud:hover {
+.light-mode .btn-hud:hover,
+.light-mode .btn-hud.active {
     color: #ffffff;
     background: var(--neon-mint);
 }

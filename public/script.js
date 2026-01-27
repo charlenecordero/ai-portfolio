@@ -6,11 +6,11 @@ function appData() {
         fromEmail: '',
         inputQuery: '',
         inputQuery: '',
-        isLightMode: localStorage.getItem('theme') === 'light',
+        isLightMode: localStorage.getItem('theme_preference') === 'light',
 
         toggleTheme() {
             this.isLightMode = !this.isLightMode;
-            localStorage.setItem('theme', this.isLightMode ? 'light' : 'dark');
+            localStorage.setItem('theme_preference', this.isLightMode ? 'light' : 'dark');
             this.refreshCharts();
         },
 
