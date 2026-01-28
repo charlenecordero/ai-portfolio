@@ -1,4 +1,4 @@
-# 🚀 AI Solutions Architect Portfolio
+# 🚀 AI & Automation Portfolio
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blueviolet)
 ![Build Status](https://img.shields.io/badge/CI%2FCD-Cloud%20Build-success)
