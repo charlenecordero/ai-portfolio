@@ -238,44 +238,155 @@
                         class="w-full md:w-1/3 alien-border glass-panel p-0 relative overflow-hidden h-[180px] md:h-[250px] group">
 
                         <div class="absolute inset-0 bg-[var(--void-moss)] opacity-80 z-10 transition-colors"></div>
-                        <!-- Abstract grid lines representing map -->
-                        <div class="absolute inset-0"
-                            style="background-image: radial-gradient(var(--neon-mint) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.1;">
+
+                        <!-- Cyberpunk Grid Background -->
+                        <div class="absolute inset-0 z-0" style="background-image: 
+                                linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+                                linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+                                background-size: 30px 30px;
+                                opacity: 0.2;">
                         </div>
-                        <!-- Stylized Manila Outline (SVG) with Glow -->
+
+                        <!-- Stylized Map Background (Abstract) -->
                         <svg class="absolute inset-0 w-full h-full z-0 transition-opacity duration-500"
-                            viewBox="0 0 400 300" style="filter: drop-shadow(0 0 8px var(--neon-mint));">
-                            <!-- Abstract Bay Coastline (Land on Right) -->
-                            <path d="M140,60 C175,120 175,180 130,240 L260,230 L270,70 Z" fill="none"
-                                stroke="var(--neon-mint)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                            <!-- Grid Overlay for Tech Feel -->
-                            <path d="M150,100 L260,100 M160,140 L260,140 M150,180 L250,180" stroke="var(--neon-mint)"
-                                stroke-width="0.5" opacity="0.2" />
+                            viewBox="0 0 400 300" style="filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.3));">
+                            <!-- Philippines Arch (Abstract) -->
+                            <path d="M180,80 Q220,150 180,220" fill="none" stroke="#00F3FF" stroke-width="1"
+                                opacity="0.4" stroke-linecap="round" />
+                            <!-- Continental Shelves (Abstract Lines) -->
+                            <path d="M50,150 Q100,100 150,150" fill="none" stroke="#00F3FF" stroke-width="0.5"
+                                opacity="0.2" /> <!-- Asia -->
+                            <path d="M250,50 Q300,100 350,50" fill="none" stroke="#00F3FF" stroke-width="0.5"
+                                opacity="0.2" /> <!-- NA -->
+                            <path d="M250,250 Q300,200 350,250" fill="none" stroke="#00F3FF" stroke-width="0.5"
+                                opacity="0.2" /> <!-- AUS -->
                         </svg>
 
-                        <!-- Location Marker -->
-                        <div
-                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
-                            <div class="relative w-4 h-4">
-                                <div class="map-pulse"></div>
-                                <div class="map-marker"></div>
+                        <!-- MAP POINTS CONTAINER -->
+                        <div class="absolute inset-0 z-20 font-tech">
+
+                            <!-- === LEGEND === -->
+                            <div
+                                class="absolute top-2 right-2 flex flex-col items-end gap-1 z-40 bg-black/40 p-1.5 rounded border border-[#00F3FF]/20 backdrop-blur-sm">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#FF2E88] shadow-[0_0_4px_#FF2E88]"></span>
+                                    <span class="text-[6px] text-[#FF2E88] tracking-widest font-bold">SERVER</span>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#00F3FF] shadow-[0_0_4px_#00F3FF]"></span>
+                                    <span class="text-[6px] text-[#00F3FF] tracking-widest font-bold">CLIENT</span>
+                                </div>
                             </div>
-                            <div class="mt-4 text-center">
+
+                            <!-- === HUB: MANILA === -->
+                            <div
+                                class="absolute top-[50%] left-[45%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group/hq cursor-default z-30">
+                                <div class="relative">
+                                    <div
+                                        class="w-3 h-3 rounded-full bg-[#FF2E88] shadow-[0_0_10px_#FF2E88] animate-pulse">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 rounded-full border border-[#FF2E88] animate-ping opacity-50">
+                                    </div>
+                                </div>
+                                <div class="mt-1 flex flex-col items-center">
+                                    <span
+                                        class="text-[var(--txt-bone)] text-[9px] font-bold bg-black/60 px-1.5 py-0.5 rounded backdrop-blur-sm border border-[#FF2E88]/30 whitespace-nowrap shadow-[0_0_8px_rgba(255,46,136,0.3)]">MANILA</span>
+                                </div>
+                            </div>
+
+                            <!-- Pque, PH (South) - ALWAYS VISIBLE -->
+                            <div
+                                class="absolute top-[60%] left-[46%] flex flex-col items-center group/loc opacity-90 z-20 hover:scale-110 transition-transform">
+                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_6px_#00F3FF]"></div>
                                 <span
-                                    class="block font-futuristic text-xl text-[var(--txt-bone)] tracking-widest text-glow">MANILA,
-                                    PH</span>
-                                <span class="block font-tech text-[10px] text-[var(--neon-mint)]">CENTRAL_HUB</span>
+                                    class="text-[#00F3FF] text-[6px] bg-black/60 px-1 rounded absolute top-2 whitespace-nowrap border border-[#00F3FF]/20">PARAÑAQUE</span>
                             </div>
+
+                            <!-- Pasay, PH (South-West) - ALWAYS VISIBLE -->
+                            <div
+                                class="absolute top-[56%] left-[42%] flex flex-col items-center group/loc opacity-90 z-20 hover:scale-110 transition-transform">
+                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_6px_#00F3FF]"></div>
+                                <span
+                                    class="text-[#00F3FF] text-[6px] bg-black/60 px-1 rounded absolute top-2 whitespace-nowrap border border-[#00F3FF]/20">PASAY</span>
+                            </div>
+
+                            <!-- === REGION: NORTH AMERICA (Top Right) === -->
+                            <!-- NA -->
+                            <div
+                                class="absolute top-[15%] left-[75%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
+                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
+                                <span
+                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">NA</span>
+                            </div>
+                            <!-- CA, US -->
+                            <div
+                                class="absolute top-[22%] left-[80%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
+                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
+                                <span
+                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">CA,
+                                    US</span>
+                            </div>
+                            <!-- TX, US -->
+                            <div
+                                class="absolute top-[28%] left-[88%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
+                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
+                                <span
+                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">TX,
+                                    US</span>
+                            </div>
+                            <!-- Connection Line (Abstract) -->
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
+                                <line x1="45%" y1="50%" x2="80%" y2="22%" stroke="#00F3FF" stroke-width="0.5"
+                                    stroke-dasharray="2,2" />
+                            </svg>
+
+                            <!-- === REGION: WORLDWIDE (Left/Bottom) === -->
+                            <!-- SG (Left) -->
+                            <div
+                                class="absolute top-[55%] left-[25%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
+                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
+                                <span
+                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">SG</span>
+                            </div>
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
+                                <line x1="45%" y1="50%" x2="25%" y2="55%" stroke="#00F3FF" stroke-width="0.5"
+                                    stroke-dasharray="2,2" />
+                            </svg>
+
+                            <!-- AUS (Bottom Right) -->
+                            <div
+                                class="absolute top-[80%] left-[65%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
+                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
+                                <span
+                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">AUS</span>
+                            </div>
+                            <!-- NZ (Far Bottom Right) -->
+                            <div
+                                class="absolute top-[85%] left-[75%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
+                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
+                                <span
+                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">NZ</span>
+                            </div>
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
+                                <line x1="45%" y1="50%" x2="65%" y2="80%" stroke="#00F3FF" stroke-width="0.5"
+                                    stroke-dasharray="2,2" />
+                            </svg>
+
                         </div>
 
-                        <div class="absolute bottom-4 left-4 z-20">
-                            <h3
-                                class="font-playfair text-[#FF2E88] text-xs mb-1 border-b border-[#FF2E88]/30 pb-1 inline-block">
-                                Location Data</h3>
-                            <p class="text-[10px] text-[var(--txt-muted)]">REGION: APAC</p>
-                            <p class="text-[10px] text-[var(--txt-muted)]">TIMEZONE: GMT+8</p>
+                        <!-- Footer Data (Bottom Left) - Compact -->
+                        <div class="absolute bottom-2 left-3 z-30 pointer-events-none">
+                            <h4
+                                class="font-tech text-[#FF2E88] text-[9px] border-b border-[#FF2E88]/30 inline-block mb-1">
+                                LOCATION_DATA</h4>
+                            <ul class="text-[9px] text-[var(--txt-muted)] font-tech leading-tight">
+                                <li>REGION: WORLDWIDE</li>
+                                <li>TZ: GMT+8</li>
+                                <li class="text-[8px] opacity-60 mt-0.5 pt-0.5 border-t border-[var(--txt-muted)]/20">
+                                    GLOBAL_RANGE: <span class="text-[#FF2E88] animate-pulse font-bold">ACTIVE</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
@@ -931,6 +1042,9 @@
                                 <span class="text-[#FF2E88] text-[10px] opacity-70 hidden md:inline">//</span>
                                 <span class="text-[var(--txt-bone)] text-xs font-tech uppercase tracking-wider"
                                     x-text="job.company"></span>
+                                <span
+                                    class="text-[10px] text-[var(--txt-muted)] font-tech md:ml-2 border-l border-[var(--txt-muted)]/30 pl-2"
+                                    x-text="job.region"></span>
                                 <span
                                     class="text-[#FF2E88] text-[10px] font-mono tracking-widest bg-[#FF2E88]/10 px-1.5 py-0.5 rounded-sm border border-[#FF2E88]/20 md:ml-2"
                                     x-text="job.years"></span>

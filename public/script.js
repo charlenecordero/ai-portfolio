@@ -642,6 +642,7 @@ function appData() {
                 company: 'BPO Services',
                 role: 'Business Insights Analyst',
                 years: 'May 2024 – Present',
+                region: 'Australia/New Zealand',
                 points: [
                     'Design and deliver data-driven decision systems to support SMB merchant and vendor growth.',
                     'Use SQL on ETL pipelines to decompose business questions and identify patterns.',
@@ -654,6 +655,7 @@ function appData() {
                 company: 'Telecom Software',
                 role: 'Technical & Business Operations Analyst',
                 years: 'Dec 2022 – Dec 2023',
+                region: 'Australia/Singapore',
                 points: [
                     'Supported large-scale telecom systems (CRM, billing, invoicing) in production.',
                     'Monitored batch jobs and system workflows, identifying failures.',
@@ -665,6 +667,7 @@ function appData() {
                 company: 'Tech Consulting',
                 role: 'DevOps / Production Systems Engineer',
                 years: 'May 2021 – July 2022',
+                region: 'North America',
                 points: [
                     'Supported enterprise-scale customer resource systems (CRS) for NA utilities.',
                     'Designed and maintained backend workflows and automation pipelines.',
@@ -677,6 +680,7 @@ function appData() {
                 company: 'IT Services',
                 role: 'Mobile QA Specialist',
                 years: 'Oct 2020 – Apr 2021',
+                region: 'Manila Philippines',
                 points: [
                     'Conducted end-to-end quality validation for web and mobile applications.',
                     'Designed and executed test scenarios to verify system behavior.',
@@ -688,6 +692,7 @@ function appData() {
                 company: 'Digital Health',
                 role: 'Health Advocate',
                 years: 'Jan 2020 – Oct 2020',
+                region: 'California, US',
                 points: [
                     'Delivered interactive user experiences through AI-assisted conversational systems.',
                     'Adapted interactions based on user responses and context.',
@@ -699,6 +704,7 @@ function appData() {
                 company: 'Tech Consulting',
                 role: 'Oracle PeopleSoft Developer',
                 years: 'Mar 2018 – Dec 2019',
+                region: 'Texas, US',
                 points: [
                     'Designed and configured enterprise HR systems for state DOT.',
                     'Translated business requirements into technical configurations.',
@@ -710,6 +716,7 @@ function appData() {
                 company: 'Logistics Firm',
                 role: 'Intern Web Programmer',
                 years: 'July 2016 – Oct 2016',
+                region: 'Manila, Philippines',
                 points: ['Assisted in front-end and back-end web development tasks (PHP, MySQL).'],
                 skills: ['PHP', 'MySQL', 'JS']
             }
