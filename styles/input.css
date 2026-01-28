@@ -547,3 +547,22 @@ body {
 .animate-breathe {
     animation: breathe 3s infinite ease-in-out;
 }
+/* Custom Cyberpunk Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--neon-pink);
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--neon-pink);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--neon-mint);
+    box-shadow: 0 0 5px var(--neon-mint);
+}

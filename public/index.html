@@ -252,35 +252,42 @@
                             viewBox="0 0 400 300" style="filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6));">
 
                             <!-- Philippines Arch (Center) -->
-                            <path d="M180,80 Q220,150 180,220" fill="rgba(0, 243, 255, 0.05)" stroke="#00F3FF"
-                                stroke-width="2" opacity="0.8" stroke-linecap="round" class="animate-pulse" />
+                            <path d="M180,80 Q220,150 180,220"
+                                :fill="isLightMode ? 'rgba(0, 143, 179, 0.1)' : 'rgba(0, 243, 255, 0.05)'"
+                                :stroke="isLightMode ? '#008fb3' : '#00F3FF'" stroke-width="2" opacity="0.8"
+                                stroke-linecap="round" class="animate-pulse" />
 
                             <!-- Asia (Left) -->
-                            <path d="M50,150 Q90,120 120,160 T150,220" fill="rgba(0, 243, 255, 0.03)" stroke="#00F3FF"
-                                stroke-width="1.5" opacity="0.5" />
+                            <path d="M50,150 Q90,120 120,160 T150,220"
+                                :fill="isLightMode ? 'rgba(0, 143, 179, 0.05)' : 'rgba(0, 243, 255, 0.03)'"
+                                :stroke="isLightMode ? '#008fb3' : '#00F3FF'" stroke-width="1.5" opacity="0.5" />
 
                             <!-- North America (Top Right) -->
-                            <path d="M250,40 Q300,80 340,60 T380,100" fill="rgba(0, 243, 255, 0.03)" stroke="#00F3FF"
-                                stroke-width="1.5" opacity="0.5" />
+                            <path d="M250,40 Q300,80 340,60 T380,100"
+                                :fill="isLightMode ? 'rgba(0, 143, 179, 0.05)' : 'rgba(0, 243, 255, 0.03)'"
+                                :stroke="isLightMode ? '#008fb3' : '#00F3FF'" stroke-width="1.5" opacity="0.5" />
 
                             <!-- Australia/NZ (Bottom Right) -->
-                            <path d="M260,240 Q300,220 340,260" fill="rgba(0, 243, 255, 0.03)" stroke="#00F3FF"
-                                stroke-width="1.5" opacity="0.5" />
+                            <path d="M260,240 Q300,220 340,260"
+                                :fill="isLightMode ? 'rgba(0, 143, 179, 0.05)' : 'rgba(0, 243, 255, 0.03)'"
+                                :stroke="isLightMode ? '#008fb3' : '#00F3FF'" stroke-width="1.5" opacity="0.5" />
                         </svg>
 
                         <!-- MAP POINTS CONTAINER -->
                         <div class="absolute inset-0 z-20 font-tech">
 
                             <!-- === LEGEND === -->
-                            <div
-                                class="absolute top-2 right-2 flex flex-col items-end gap-1 z-40 bg-black/40 p-1.5 rounded border border-[#00F3FF]/20 backdrop-blur-sm">
+                            <div class="absolute top-2 right-2 flex flex-col items-end gap-1 z-40 p-1.5 rounded backdrop-blur-sm border transition-colors duration-300"
+                                :class="isLightMode ? 'bg-white/60 border-[#008fb3]/30' : 'bg-black/40 border-[#00F3FF]/20'">
                                 <div class="flex items-center gap-1.5">
                                     <span class="w-1.5 h-1.5 rounded-full bg-[#FF2E88] shadow-[0_0_4px_#FF2E88]"></span>
-                                    <span class="text-[6px] text-[#FF2E88] tracking-widest font-bold">SERVER</span>
+                                    <span class="text-[6px] tracking-widest font-bold text-[#FF2E88]">SERVER</span>
                                 </div>
                                 <div class="flex items-center gap-1.5">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-[#00F3FF] shadow-[0_0_4px_#00F3FF]"></span>
-                                    <span class="text-[6px] text-[#00F3FF] tracking-widest font-bold">CLIENT</span>
+                                    <span class="w-1.5 h-1.5 rounded-full shadow-[0_0_4px_currentColor]"
+                                        :class="isLightMode ? 'bg-[#008fb3] shadow-[#008fb3]' : 'bg-[#00F3FF] shadow-[#00F3FF]'"></span>
+                                    <span class="text-[6px] tracking-widest font-bold"
+                                        :class="isLightMode ? 'text-[#008fb3]' : 'text-[#00F3FF]'">CLIENT</span>
                                 </div>
                             </div>
 
@@ -296,101 +303,124 @@
                                     </div>
                                 </div>
                                 <div class="mt-1 flex flex-col items-center">
+                                    <!-- Manila Label: Dark mode = bg-black/60, Light mode = Text Only (No Box) -->
                                     <span
-                                        class="text-[var(--txt-bone)] text-[9px] font-bold bg-black/60 px-1.5 py-0.5 rounded backdrop-blur-sm border border-[#FF2E88]/30 whitespace-nowrap shadow-[0_0_8px_rgba(255,46,136,0.3)]">MANILA</span>
+                                        class="text-[9px] font-bold px-1.5 py-0.5 rounded backdrop-blur-sm whitespace-nowrap transition-colors duration-300"
+                                        :class="isLightMode ? 'text-[#FF2E88] font-extrabold' : 'text-[var(--txt-bone)] bg-black/60 border border-[#FF2E88]/30 shadow-[0_0_8px_rgba(255,46,136,0.3)]'">MANILA</span>
                                 </div>
                             </div>
 
                             <!-- Pque, PH (South) - ALWAYS VISIBLE -->
                             <div
                                 class="absolute top-[60%] left-[46%] flex flex-col items-center group/loc opacity-90 z-20 hover:scale-110 transition-transform">
-                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_6px_#00F3FF]"></div>
+                                <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_6px_currentColor]"
+                                    :class="isLightMode ? 'bg-[#008fb3] text-[#008fb3]' : 'bg-[#00F3FF] text-[#00F3FF]'">
+                                </div>
                                 <span
-                                    class="text-[#00F3FF] text-[6px] bg-black/60 px-1 rounded absolute top-2 whitespace-nowrap border border-[#00F3FF]/20">PARAÑAQUE</span>
+                                    class="text-[6px] px-1 rounded absolute top-2 whitespace-nowrap transition-colors duration-300"
+                                    :class="isLightMode ? 'text-[#008fb3] font-bold' : 'text-[#00F3FF] bg-black/60 border border-[#00F3FF]/20'">PARAÑAQUE</span>
                             </div>
 
                             <!-- Pasay, PH (South-West) - ALWAYS VISIBLE -->
                             <div
                                 class="absolute top-[56%] left-[42%] flex flex-col items-center group/loc opacity-90 z-20 hover:scale-110 transition-transform">
-                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_6px_#00F3FF]"></div>
+                                <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_6px_currentColor]"
+                                    :class="isLightMode ? 'bg-[#008fb3] text-[#008fb3]' : 'bg-[#00F3FF] text-[#00F3FF]'">
+                                </div>
                                 <span
-                                    class="text-[#00F3FF] text-[6px] bg-black/60 px-1 rounded absolute top-2 whitespace-nowrap border border-[#00F3FF]/20">PASAY</span>
+                                    class="text-[6px] px-1 rounded absolute top-2 whitespace-nowrap transition-colors duration-300"
+                                    :class="isLightMode ? 'text-[#008fb3] font-bold' : 'text-[#00F3FF] bg-black/60 border border-[#00F3FF]/20'">PASAY</span>
                             </div>
 
                             <!-- === REGION: NORTH AMERICA (Top Right) === -->
                             <!-- NA -->
                             <div
                                 class="absolute top-[15%] left-[75%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
-                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
-                                <span
-                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">NA</span>
+                                <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_4px_currentColor]"
+                                    :class="isLightMode ? 'bg-[#008fb3] text-[#008fb3]' : 'bg-[#00F3FF] text-[#00F3FF]'">
+                                </div>
+                                <span class="text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_currentColor]"
+                                    :class="isLightMode ? 'text-[#008fb3]' : 'text-[#00F3FF]'">NA</span>
                             </div>
                             <!-- CA, US -->
                             <div
                                 class="absolute top-[22%] left-[80%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
-                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
-                                <span
-                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">CA,
-                                    US</span>
+                                <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_4px_currentColor]"
+                                    :class="isLightMode ? 'bg-[#008fb3] text-[#008fb3]' : 'bg-[#00F3FF] text-[#00F3FF]'">
+                                </div>
+                                <span class="text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_currentColor]"
+                                    :class="isLightMode ? 'text-[#008fb3]' : 'text-[#00F3FF]'">CA, US</span>
                             </div>
                             <!-- TX, US -->
                             <div
                                 class="absolute top-[28%] left-[88%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
-                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
-                                <span
-                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">TX,
-                                    US</span>
+                                <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_4px_currentColor]"
+                                    :class="isLightMode ? 'bg-[#008fb3] text-[#008fb3]' : 'bg-[#00F3FF] text-[#00F3FF]'">
+                                </div>
+                                <span class="text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_currentColor]"
+                                    :class="isLightMode ? 'text-[#008fb3]' : 'text-[#00F3FF]'">TX, US</span>
                             </div>
                             <!-- Connection Line (Abstract) -->
                             <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
-                                <line x1="45%" y1="50%" x2="80%" y2="22%" stroke="#00F3FF" stroke-width="0.5"
-                                    stroke-dasharray="2,2" />
+                                <line x1="45%" y1="50%" x2="80%" y2="22%" stroke-width="0.5" stroke-dasharray="2,2"
+                                    :stroke="isLightMode ? '#008fb3' : '#00F3FF'" />
                             </svg>
 
                             <!-- === REGION: WORLDWIDE (Left/Bottom) === -->
                             <!-- SG (Left) -->
                             <div
                                 class="absolute top-[55%] left-[25%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
-                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
-                                <span
-                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">SG</span>
+                                <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_4px_currentColor]"
+                                    :class="isLightMode ? 'bg-[#008fb3] text-[#008fb3]' : 'bg-[#00F3FF] text-[#00F3FF]'">
+                                </div>
+                                <span class="text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_currentColor]"
+                                    :class="isLightMode ? 'text-[#008fb3]' : 'text-[#00F3FF]'">SG</span>
                             </div>
+                            <!-- Connection Line to SG -->
                             <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
-                                <line x1="45%" y1="50%" x2="25%" y2="55%" stroke="#00F3FF" stroke-width="0.5"
-                                    stroke-dasharray="2,2" />
+                                <line x1="45%" y1="50%" x2="25%" y2="55%" stroke-width="0.5" stroke-dasharray="2,2"
+                                    :stroke="isLightMode ? '#008fb3' : '#00F3FF'" />
                             </svg>
 
                             <!-- AUS (Bottom Right) -->
                             <div
                                 class="absolute top-[80%] left-[65%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
-                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
-                                <span
-                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">AUS</span>
+                                <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_4px_currentColor]"
+                                    :class="isLightMode ? 'bg-[#008fb3] text-[#008fb3]' : 'bg-[#00F3FF] text-[#00F3FF]'">
+                                </div>
+                                <span class="text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_currentColor]"
+                                    :class="isLightMode ? 'text-[#008fb3]' : 'text-[#00F3FF]'">AUS</span>
                             </div>
                             <!-- NZ (Far Bottom Right) -->
                             <div
                                 class="absolute top-[85%] left-[75%] flex flex-col items-center group/loc opacity-80 hover:opacity-100 transition-opacity">
-                                <div class="w-1.5 h-1.5 bg-[#00F3FF] rounded-full shadow-[0_0_4px_#00F3FF]"></div>
-                                <span
-                                    class="text-[#00F3FF] text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_#00F3FF]">NZ</span>
+                                <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_4px_currentColor]"
+                                    :class="isLightMode ? 'bg-[#008fb3] text-[#008fb3]' : 'bg-[#00F3FF] text-[#00F3FF]'">
+                                </div>
+                                <span class="text-[6px] mt-0.5 whitespace-nowrap drop-shadow-[0_0_3px_currentColor]"
+                                    :class="isLightMode ? 'text-[#008fb3]' : 'text-[#00F3FF]'">NZ</span>
                             </div>
+                            <!-- Connection Line to AUS -->
                             <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30">
-                                <line x1="45%" y1="50%" x2="65%" y2="80%" stroke="#00F3FF" stroke-width="0.5"
-                                    stroke-dasharray="2,2" />
+                                <line x1="45%" y1="50%" x2="65%" y2="80%" stroke-width="0.5" stroke-dasharray="2,2"
+                                    :stroke="isLightMode ? '#008fb3' : '#00F3FF'" />
                             </svg>
 
                         </div>
 
                         <!-- Footer Data (Bottom Left) - Compact -->
                         <div class="absolute bottom-2 left-3 z-30 pointer-events-none">
-                            <h4
-                                class="font-tech text-[#FF2E88] text-[9px] border-b border-[#FF2E88]/30 inline-block mb-1">
+                            <h4 class="font-tech text-xs border-b inline-block mb-1 font-bold"
+                                :class="isLightMode ? 'text-[#e60073] border-[#e60073]/30' : 'text-[#FF2E88] border-[#FF2E88]/30'">
                                 LOCATION_DATA</h4>
-                            <ul class="text-[9px] text-[var(--txt-muted)] font-tech leading-tight">
+                            <ul class="text-[9px] font-tech leading-tight"
+                                :class="isLightMode ? 'text-[#444]' : 'text-[var(--txt-muted)]'">
                                 <li>REGION: WORLDWIDE</li>
                                 <li>TZ: GMT+8</li>
-                                <li class="text-[8px] opacity-60 mt-0.5 pt-0.5 border-t border-[var(--txt-muted)]/20">
-                                    GLOBAL_RANGE: <span class="text-[#FF2E88] animate-pulse font-bold">ACTIVE</span>
+                                <li class="text-[8px] opacity-60 mt-0.5 pt-0.5 border-t"
+                                    :class="isLightMode ? 'border-[#444]/20' : 'border-[var(--txt-muted)]/20'">
+                                    GLOBAL_RANGE: <span class="animate-pulse font-bold"
+                                        :class="isLightMode ? 'text-[#e60073]' : 'text-[#FF2E88]'">ACTIVE</span>
                                 </li>
                             </ul>
                         </div>
@@ -1583,6 +1613,13 @@
         <button @click="toggleChat()" class="chat-avatar-btn animate-breathe group">
             <img src="robot_avatar.png" alt="Aura AI" class="chat-avatar-img">
         </button>
+    </div>
+
+    <!-- Visitor Counter (Subtle Footer) -->
+    <div class="fixed bottom-2 left-2 z-[1000] font-tech text-[5px] md:text-[9px] text-[var(--neon-mint)] bg-black/80 px-1 py-0.5 md:px-2 md:py-1 rounded border border-[var(--neon-mint)]/30 opacity-80 hover:opacity-100 transition-opacity select-none"
+        x-data="{ count: localStorage.getItem('visitorCount') || 10243 }">
+        <span class="tracking-widest">VISITOR_ID:</span>
+        <span x-text="count.toString().padStart(6, '0')"></span>
     </div>
 
     <!-- Scripts -->

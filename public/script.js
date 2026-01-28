@@ -6,12 +6,27 @@ function appData() {
         fromEmail: '',
         inputQuery: '',
         inputQuery: '',
-        isLightMode: localStorage.getItem('theme_v3') === 'light',
+        isLightMode: localStorage.getItem('theme_v4') === 'light',
 
         toggleTheme() {
             this.isLightMode = !this.isLightMode;
-            localStorage.setItem('theme_v3', this.isLightMode ? 'light' : 'dark');
+            localStorage.setItem('theme_v4', this.isLightMode ? 'light' : 'dark');
             this.refreshCharts();
+        },
+
+        async initVisitorCount() {
+            try {
+                // Use a unique namespace for this portfolio
+                const response = await fetch('https://api.countapi.xyz/hit/ai-portfolio-charlene/visits');
+                const data = await response.json();
+                localStorage.setItem('visitorCount', data.value);
+            } catch (error) {
+                console.warn('Visitor counter offline, using local fallback');
+                // Fallback to local simulated count if API fails
+                let count = localStorage.getItem('visitorCount');
+                if (!count) count = 10420;
+                localStorage.setItem('visitorCount', count);
+            }
         },
 
         // Blog Data
@@ -898,6 +913,9 @@ function appData() {
             this.$watch('chatInput', () => {
                 if (this.chatOpen) this.startInactivityTimer();
             });
+
+            // Initialize Visitor Counter
+            this.initVisitorCount();
 
             // Start scanline effect
             setTimeout(() => {
