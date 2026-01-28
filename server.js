@@ -89,7 +89,7 @@ app.post('/api/chat', async (req, res) => {
         3. Context & Knowledge Base:
         1. WHO IS CHARLENE:
            - Charlene Cordero is a **Business Insights Analyst** at **TaskUs** (2024-Present).
-           - She is **starting to transition** into **AI & Automation** (aspiring AI Architect).
+           - She is **starting to transition** into **AI & Automation** (aspiring AI & Automation Developer).
            - Previously: Amdocs (Ops Analyst), Accenture (DevOps), Multisys (QA).
            - She leverages 7+ years of technical rigor (DevOps, QA, Analytics) to bridge the gap between data and intelligent systems.
 

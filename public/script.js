@@ -382,7 +382,7 @@ function appData() {
                                             "DevOps (Accenture)",
                                             "Ops Analyst (Amdocs)",
                                             "Business Insights (BPO)",
-                                            "AI Architect Goal"
+                                            "AI Developer Goal"
                                         ];
                                         return roles[context.dataIndex];
                                     }
@@ -412,7 +412,7 @@ function appData() {
                                     "DevOps",
                                     "Ops Analyst",
                                     "Biz Analyst",
-                                    "AI Architect"
+                                    "AI Developer"
                                 ];
 
                                 const meta = chart.getDatasetMeta(0);
@@ -770,7 +770,7 @@ function appData() {
             }
             // 2. Fuzzy / Keyword Match
             else if (lowerText.includes('who') && lowerText.includes('charlene') || lowerText === 'charlene') {
-                offlineReply = "Charlene is a **Business Insights Analyst** transitioning into **AI Architecture**. \n<br><button onclick=\"window.location.href='#'; document.querySelector('[x-data]').__x.$data.currentSection = 'about'\" class='mt-2 text-xs border border-[#4AF2A1] text-[#4AF2A1] px-2 py-1 rounded hover:bg-[#4AF2A1] hover:text-black transition-colors uppercase'>Read Full Bio >></button>";
+                offlineReply = "Charlene is a **Business Insights Analyst** transitioning into **AI & Automation Development**. \n<br><button onclick=\"window.location.href='#'; document.querySelector('[x-data]').__x.$data.currentSection = 'about'\" class='mt-2 text-xs border border-[#4AF2A1] text-[#4AF2A1] px-2 py-1 rounded hover:bg-[#4AF2A1] hover:text-black transition-colors uppercase'>Read Full Bio >></button>";
             }
             else if (lowerText.includes('design') || lowerText.includes('style')) offlineReply = offlineMap["Explain Design"];
             else if (lowerText.includes('code') || lowerText.includes('stack')) offlineReply = offlineMap["Explain Code Architecture"];

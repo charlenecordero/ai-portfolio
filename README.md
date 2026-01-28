@@ -5,7 +5,7 @@
 ![Platform](https://img.shields.io/badge/Platform-Google%20Cloud%20Run-blue)
 ![Stack](https://img.shields.io/badge/Tech-Node.js%20|%20Alpine.js%20|%20Tailwind-teal)
 
-A high-performance, AI-integrated developer portfolio showcasing the intersection of **Cloud Native Engineering** and **Generative AI Workflows**. This project demonstrates a production-grade deployment using serverless containers, leveraging a custom "Cyberpunk x Cottagecore" aesthetic built on a lightweight, framework-agnostic stack.
+A high-performance, AI-integrated developer portfolio showcasing the intersection of **Automation Engineering** and **Generative AI Workflows**. This project demonstrates a production-grade deployment using serverless containers, leveraging a custom "Cyberpunk x Cottagecore" aesthetic built on a lightweight, framework-agnostic stack.
 
 ---
 

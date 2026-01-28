@@ -1,7 +1,7 @@
 {
   "name": "ai-portfolio",
   "version": "1.0.0",
-  "description": "AI Solutions Architect Portfolio powered by Gemini",
+  "description": "AI & Automation Developer Portfolio powered by Gemini",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
