@@ -123,7 +123,7 @@ function appData() {
                 role: 'Business Insights Analyst',
                 company: 'BPO',
                 focus: 'Module_Focus: AI & Data Strategy',
-                skills: ['SQL', 'Sigma Computing', 'ETL', 'Business Strategy'],
+                skills: ['Snowflake SQL', 'Sigma Computing', 'ETL', 'Google Sheets'],
                 desc: 'Designing data-driven decision systems. Bridging technical analysis and business strategy for sales/ops growth.'
             }
         ],
@@ -667,7 +667,7 @@ function appData() {
                     'Build and maintain Sigma Computing dashboards as decision-support tools.',
                     'Validate data, assumptions, and logic to ensure accuracy and trust.'
                 ],
-                skills: ['SQL', 'UNIX', 'Sigma Computing', 'ETL']
+                skills: ['Snowflake SQL', 'Sigma Computing', 'Google Sheets', 'ETL']
             },
             {
                 company: 'Telecom Software',
@@ -679,7 +679,7 @@ function appData() {
                     'Monitored batch jobs and system workflows, identifying failures.',
                     'Broke down complex system issues into actionable steps for resolution.'
                 ],
-                skills: ['System Monitoring', 'Workflow Analysis', 'SQL', 'Incident Mgmt']
+                skills: ['System Monitoring', 'Excel', 'Oracle SQL', 'Incident Mgmt']
             },
             {
                 company: 'Tech Consulting',
